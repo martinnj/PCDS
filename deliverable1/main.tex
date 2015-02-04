@@ -1,5 +1,7 @@
 
 \documentclass{article}
+\usepackage{a4wide}
+\usepackage[utf8]{inputenc}
 
 %\usepackage[ansinew]{inputenc} %Bærbar ÆØÅ?
 
@@ -7,10 +9,24 @@
 %\usepackage{tikz}
 \usepackage{graphicx} % Allows figures
 %\usepackage{tabularx}
-\usepackage{amsmath} %math
+\usepackage{amsmath}%,amssymb,amsthm,amsfonts,ulem}
+%\usepackage{hyperref}
+%\usepackage{listings}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{mdwlist}
+\usepackage{wrapfig}
+\usepackage{caption}
+\usepackage{todonotes}
+
 %Section style
 \usepackage{etoolbox} %for configuration of sloppy
 \usepackage{xcolor, colortbl}
+
+% usage: \graphicc{width}{file}{caption}{label}
+\newcommand{\graphicc}[4]{\begin{figure}[H] \centering
+            \includegraphics[width={#1\textwidth}, keepaspectratio=true]{{#2}}
+            \caption{{#3}} \label{#4} \end{figure}}
 
 \newcommand{\mc}[2]{\multicolumn{#1}{c}{#2}}
 \definecolor{Gray}{gray}{0.85}
