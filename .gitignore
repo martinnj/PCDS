@@ -58,6 +58,7 @@ target/
 
 
 # Our shit
-.pdf
-.aux
-.toc
+*.pdf
+*.aux
+*.toc
+*.fls
