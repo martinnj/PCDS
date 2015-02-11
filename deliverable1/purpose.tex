@@ -1,43 +1,44 @@
 \section{Purpose/Vision}
 %Provide a clear, short and sweet vision for your team and your product
 
-We want to produce and implement a ``\emph{matchmaking-algorithm}''
-that can help Leapkit match companies/projects to students with relevant
-skills and interests.
+The product owner, Leapkit, wants a matchmaking algorithm for their webportal, matching students with projects uploaded by companies to their site. Student information will be gathered from their LinkedIn profile. The matchmaking algorithm should match on the students skills and requirements set by the companies.
 
-The algorithm should base its guesses on data collected from company-
-and studentregistration stored by Leapkit.
+We want to create the integration with LinkedIn, and produce the mathmaking algorithm and integrate it into the existing Leapkit solution.
+
+%We want to produce and implement the ``\emph{matchmaking-algorithm}''
+%that can help Leapkit match companies/projects to students with relevant
+%skills and interests based on their LinkedIn profile. The LinkedIn %information will be gathered by integrating LinkedIn via its API.
 
 \subsection{Roadmap}
 %Briefly outline your intended product including sprint goals for each sprint
 %and initial product backlog
 \begin{itemize*}
-  \item Sprint 0
-        \begin{enumerate*}
-          \item Be awesome.
-          \item Increase value.
-          \item Convert synergy.
-          \item Ayy lmao
-        \end{enumerate*}
   \item Sprint 1
         \begin{enumerate*}
-          \item Increase value.
-          \item Convert synergy.
+          \item Preliminary implementation of authentication with LinkedIn.
+          \item Preliminary implementation of information retrieval from LinkedIn.
+          \item Overall design for an algorithm for matching students with projects.
         \end{enumerate*}
   \item Sprint 2
         \begin{enumerate*}
-          \item Profit redistribution.
+          \item Information retrieval from Leapkit (Django aclimatization).
+          \item Finish algorithm design based on information retrieval from Leapkit and LinkedIn.
         \end{enumerate*}
   \item Sprint 3
         \begin{enumerate*}
-          \item Add Corporate Organization Increase.
+          \item Implement matchmaking algorithm.
+          \item Implement LinkedIn authentication in Leapkit source.
         \end{enumerate*}
   \item Sprint 4
         \begin{enumerate*}
-          \item Add Corporate Organization Increase.
+          \item Integrate LinkedIn scraper in Leapkit source.
+          \item Integrate matchmaking algorithm in Leapkit source.
+          \item Adjustment and finetuning of matchmaking algorithm.
         \end{enumerate*}
   \item Sprint 5
         \begin{enumerate*}
-          \item Finish Agenda.
+          \item Final adjustments of matchmaking algorithm.
+          \item Testing and Quality Assurance.
+          \item Final integration and deployment.
         \end{enumerate*}
 \end{itemize*}
