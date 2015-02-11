@@ -1,0 +1,25 @@
+Leapkit @ CBS - 11-02-2015:
+
+Project:
+Take LinkedIn login and scrape competencies and courses (info!)
+Create matchmaking algorithm that can match students to projects based on the information scraped from LinkedIn.
+
+
+
+Scrum:
+We create demos for each sprint and meet up and show what we've done.
+
+
+
+Client wishes:
+Get the basics done well, for instance, algorithm speed is not the primary factor, better matching is more important.
+
+Algorithm should rather show too many than too fwe projects, since the project pool is rather shallow right now.
+
+
+
+Other stuff:
+We get an image of a machine that can run the solution for testing.
+
+
+jeni@leapkit.com
