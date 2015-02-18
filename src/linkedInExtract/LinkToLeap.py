@@ -2,6 +2,16 @@
 # from BeautifulSoup import BeautifulSoup
 import xml.etree.ElementTree as ET
 
+class LinkedInExtraction(object):
+    id = 
+    first_name = 
+    last_name = 
+    headline = 
+    profile_url =
+
+class Education(object):
+    id
+
 xml = """ <?xml version="1.0" encoding="UTF-8"?>
             <person>
                 <id>1R2RtA</id>
@@ -16,7 +26,17 @@ xml = """ <?xml version="1.0" encoding="UTF-8"?>
 
 tree = ET.parse('test.xml')
 root = tree.getroot()
-print root
+for child in root:
+    if (child.tag == "site-standard-profile-request"):
+        for subChild in child:
+            print subChild.text
+    print child.tag, child.text
+
+
+def extractPerson(root):
+    for child in root:
+        if(child.tag == "site-standard-profile-request"):
+            
 
 
 
