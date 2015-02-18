@@ -1,0 +1,8 @@
+LinkedIn application
+
+Administrate all applications (to access LinkedIn via):
+https://www.linkedin.com/secure/developer
+
+Guide to usage:
+https://developer.linkedin.com/docs/oauth2
+https://github.com/ozgur/python-linkedin
