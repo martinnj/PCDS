@@ -1,7 +1,9 @@
 De data vi trækker ud fra LinkedIn og den struktur de har efter udtrækningen.
 
 **ProfileExtraction**
+   
    *Basic profile*
+
    - id
    - first-name
    - last-name
@@ -96,5 +98,3 @@ De data vi trækker ud fra LinkedIn og den struktur de har efter udtrækningen.
    - role
    - organization:(name)
    - cause:(name)
-
-extraction.educations[0].id
