@@ -11,9 +11,12 @@ When creating projects, companies can chose some skills to attach to the project
 We count number of matches between a student and a project. BAM!
 
 
-Text-based matching:
-Find occurences of the students "skills"[0] in the body of the project text and count number of occurences. Minimum length of substrings can be adjusted.
-[0]skills can be multible word things like "system management", match on the entire thing, and "system" and "management". Might return too many positives. can be adjusted.
+Text-based matching: 
+Find occurences of the students "skills"[0] in the body
+of the project text and count number of occurences. Minimum length of substrings
+can be adjusted. [0]skills can be multible word things like "system management",
+match on the entire thing, and "system" and "management". Might return too many
+positives. can be adjusted.
 
 
 Normalize all above:
