@@ -1,0 +1,80 @@
+
+\documentclass[a4paper,11pt]{article}
+\usepackage{a4wide}
+\usepackage[utf8]{inputenc}
+\usepackage{ucs}
+\usepackage[T1]{fontenc}
+\linespread{1.2}
+\usepackage{courier}
+
+\usepackage{graphicx} % Allows figures
+\usepackage{amsmath}%,amssymb,amsthm,amsfonts,ulem}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{mdwlist}
+\usepackage{wrapfig}
+\usepackage{caption}
+\usepackage{todonotes}
+
+% subtable
+\usepackage{subfig}% http://ctan.org/pkg/subfig
+\usepackage{booktabs}% http://ctan.org/pkg/booktabs
+
+%Section style
+\usepackage{etoolbox} %for configuration of sloppy
+\usepackage{xcolor, colortbl}
+
+% usage: \graphicc{width}{file}{caption}{label}
+\newcommand{\graphicc}[4]{\begin{figure}[H] \centering
+            \includegraphics[width={#1\textwidth}, keepaspectratio=true]{{#2}}
+            \caption{{#3}} \label{#4} \end{figure}}
+
+\newcommand{\mc}[2]{\multicolumn{#1}{c}{#2}}
+\definecolor{Gray}{gray}{0.85}
+\definecolor{secnum}{RGB}{102,102,102}
+
+\makeatletter
+    \def\@seccntformat#1{\llap{\color{secnum}\csname the#1\endcsname\hskip 16pt}}
+\makeatother
+%end section style
+
+{\sloppy}{\hbadness 10000\relax}{}{} %adds hbadness to sloppy
+
+
+% Frontpage stuff
+\title{Deliverable 2 - Project Course: Development Studio 2014}
+\author
+{
+    Martin Jørgensen \\
+    University of Copenhagen \\
+    Department of Computer Science \\
+    {\tt tzk173@alumni.ku.dk}
+    \and
+    Henrik Bendt \\
+    University of Copenhagen \\
+    Department of Computer Science \\
+    {\tt gwk553@alumni.ku.dk}
+    \and
+    Kasper Passov \\
+    University of Copenhagen \\
+    Department of Computer Science \\
+    {\tt pvx884@alumni.ku.dk}
+    \and
+    Lasse Madsen \\
+    University of Copenhagen \\
+    Department of Computer Science \\
+    {\tt xsc606@alumni.ku.dk}
+}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+\pagebreak
+
+%\input{somepage}
+
+
+\end{document}
