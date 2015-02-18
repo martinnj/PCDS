@@ -6,9 +6,9 @@ This gets matched to the students "major".
 Any match returned.
 
 Skill-based matching:
-We collate a skill DB based on skills scraped from student profiles.
-When creating projects, companies can chose some skills to attach to the project.
-We count number of matches between a student and a project. BAM!
+We collate a skill DB based on skills scraped from student profiles. When
+creating projects, companies can chose some skills to attach to the project. We
+count number of matches between a student and a project. BAM!
 
 
 Text-based matching: 
