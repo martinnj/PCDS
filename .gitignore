@@ -63,3 +63,4 @@ target/
 *.toc
 *.fls
 *.fdb_latexmk
+*.out
