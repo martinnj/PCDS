@@ -1,66 +1,150 @@
-# from xml.dom import minidom
-# from BeautifulSoup import BeautifulSoup
-import xml.etree.ElementTree as ET
+import json
+from pprint import pprint
+import ast
 
-class LinkedInExtraction(object):
-    id = 
-    first_name = 
-    last_name = 
-    headline = 
-    profile_url =
+class Person(object):
+    id = ""
+    firstName = ""
+    maidenName = ""
+    lastName = ""
+    headline = ""
+    location = ""
+    industry = ""
+    summary = ""
+    specialities = ""
+    positions = ""
+    pictureUrl = ""
+    publicProfileUrl = ""
+    formatted_name = ""
+    phoneticFirstName = ""
+    phoneticLastName = ""
+    formattedPhoneticName = ""
+    publications = [] # a List of Publications
+    positions = []
+    skills = []
+    educations = []
+    courses = []
+
+class Course(object):
+    id  = "" 
+    name   = "" 
+    number  = "" 
+
+class Skill(object):
+    id = ""
+    name = ""
+    def __str__(self):
+        return "id = " + self.id + ", name = " + self.name
+
+class Position(object):
+    id = "" 
+    title = ""
+    summary = ""
+    startDate = ""
+    endDate = ""
+    isCurrent = ""
+    company = "" 
+
+class Company(object):
+    id = ""
+    name = ""
+    type = "" 
+    ticker = ""
+
+class Publication(object):
+    id = ""
+    title = ""
+    name = ""
+    date = ""
+    url = ""
+    summary = ""
+    author = ""
+
+class Author(object):
+    id = ""
+    name = ""
+    person = ""
 
 class Education(object):
-    id
+    id = ""
+    schoolName = ""
+    fieldOfStudy = ""
+    startDate = ""
+    endDate = ""
+    degree = ""
+    activities = ""
+    notes = ""
 
-xml = """ <?xml version="1.0" encoding="UTF-8"?>
-            <person>
-                <id>1R2RtA</id>
-                <first-name>Frodo</first-name>
-                <last-name>Baggins</last-name>
-                <headline>Jewelery Repossession in Middle Earth</headline>
-                <site-standard-profile-request>
-                    <url>https://www.linkedin.com/profile/view?id=</url>
-                </site-standard-profile-request>
-            </person>
-    """
+file = open('full_extraction_example.json')
+for line in file:
+    data = line
 
-tree = ET.parse('test.xml')
-root = tree.getroot()
-for child in root:
-    if (child.tag == "site-standard-profile-request"):
-        for subChild in child:
-            print subChild.text
-    print child.tag, child.text
+if(data[1] == "u"):
+    json_data = ast.literal_eval(data)
+else:
+    json_data = json.loads(data)
 
+def get(data, query):
+    if(query in data):
+        # print ("getting " + query + " with value " + str(data[query]) + " and type "  + str(type(data[query])))
+        return data[query]
+    else:
+        return ""
 
-def extractPerson(root):
-    for child in root:
-        if(child.tag == "site-standard-profile-request"):
-            
+def getSub(data, query):
+    if("values" in get(data,query)):
+        return get(data, query)["values"]
+    else:
+        return []
 
+def fillFullProfile(data):
+    variables = [s for s in dir(Person) if s[0] != '_']
+    person = Person()
+    for var in variables:
+        if(var == "publications"):
+            for publication in getSub(data, "publications"):
+               classInstance = createSub(var, Publication, publication) 
+               exec("person.%s.append(classInstance)" % var)
+        elif(var == "positions"):
+           for position in getSub(data,"positions"):
+               classInstance = createSub(var, Position, position) 
+               exec("person.%s.append(classInstance)" % var)
+        elif(var == "educations"):
+           for education in getSub(data,"educations"):
+               classInstance = createSub(var, Education, education) 
+               person.educations.append(classInstance)
+        elif(var == "skills"):
+            for skill in getSub(data, "skills"):
+               person.skills.append(createSub(var, Skill, skill))
+        elif(var == "courses"):
+            for course in getSub(data, "courses"):
+               person.courses.append(createSub(var, Course, course))
+        else: 
+            exec("person.%s = \"%s\"" % (var, get(data,var)))
+    return person
+    
+def createSub(name, className, data):
+    variables = [s for s in dir(className) if s[0] != '_']
+    classInstance = className()
+    for var in variables:
+        if(var[-4:] == "Date"):
+            exec("classInstance.%s = \"%s\"" % (var, formatDate(get(data,var))))
+        elif(var == "company"):
+            classInstance.company = createSub(var, Company, get(data, var))
+        elif(var == "name" and (name == "skills" or name == "publishers")):
+            classInstance.name = data[name[:-1]][var]
+        elif(var == "author"):
+            classInstance.author = createSub(var, Author, get(data, var))
+        else:
+            exec("classInstance.%s = \"%s\"" % (var,get(data,var)))
+        # exec()
+        # exec("print \"%s is \" + str(classInstance.%s)" % (var, var))
+    return classInstance
 
+def formatDate(data):
+    if data is "":
+        return data
+    return str(get(data,"month")) + "/" + str(get(data, "year"))
 
-# bsXML = BeautifulSoup(xml)
-
-# print bsXML.person.findAll("id")
-
-# def getText(nodelist):
-    # rc = []
-    # for node in nodelist:
-        # if node.nodeType == node.TEXT_NODE:
-            # rc.append(node.data)
-    # return ''.join(rc)
-
-# xmldoc = minidom.parse('test.xml')
-# print getText(xmldoc)
-# print getText(xmldoc.childNodes)
-# print xmldoc.childNodes.childNode
-# itemlist = xmldoc.getElementsByTagName('id') 
-# print len(itemlist)
-# print itemlist[0]
-# print itemlist[0].attributes['id'].value
-# print itemlist[0].value
-# print itemlist[0].attributes['name'].value
-# for s in itemlist :
-        # print s.attributes['name'].value
-
+person = fillFullProfile(json_data)
+# print person.courses[7].name
