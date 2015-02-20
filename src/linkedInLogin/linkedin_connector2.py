@@ -1,4 +1,5 @@
 # Python2.7
+import json
 
 from linkedin import linkedin
 
@@ -11,6 +12,8 @@ USER_TOKEN = 'a0c8853f-d5aa-4dbb-98eb-7e5ad3c3d33f'
 USER_SECRET = '84b2fe57-45fb-4cb7-a3d1-b564d7c3d131'
 
 RETURN_URL = 'http://www.google.com'
+
+FILE_NAME = 'linkedInResult.json'
 
 # Instantiate the developer authentication class
 
@@ -31,5 +34,9 @@ application = linkedin.LinkedInApplication(authentication)
 #fields = 'skills'
 # Full extraction:
 fields = "id," + "first-name," + "last-name," + "headline," + "picture-url," + "industry," + "summary," + "specialties," + "positions:(" + "id," + "title," + "summary," + "start-date," + "end-date," + "is-current," + "company:(" + "id," + "name," + "type," + "size," + "industry," + "ticker)" +")," + "educations:(" + "id," + "school-name," + "field-of-study," + "start-date," + "end-date," + "degree," + "activities," + "notes)," + "associations," + "interests," + "num-recommenders," + "date-of-birth," + "publications:(" + "id," + "title," + "publisher:(name)," + "authors:(id,name)," + "date," + "url," + "summary)," + "patents:(" + "id," + "title," + "summary," + "number," + "status:(id,name)," + "office:(name)," + "inventors:(id,name)," + "date," + "url)," + "languages:(" + "id," + "language:(name)," + "proficiency:(level,name))," + "skills:(" + "id," + "skill:(name))," + "certifications:(" + "id," + "name," + "authority:(name)," + "number," + "start-date," + "end-date)," + "courses:(" + "id," + "name," + "number)," + "recommendations-received:(" + "id," + "recommendation-type," + "recommendation-text," + "recommender)," + "honors-awards," + "three-current-positions," + "three-past-positions," + "volunteer"
+data = application.get_profile(None, None, fields)
 
-print application.get_profile(None, None, fields)
+with open(FILE_NAME, 'w') as outfile:
+    json.dump(data, outfile)
+
+print "Profile dumped to file: " + FILE_NAME
