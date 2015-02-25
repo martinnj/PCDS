@@ -1,8 +1,19 @@
 Setup environment in terminal:
 GOTO ../PCDS/src/linkedInLogin
 
-Run command:
-source env/bin/activate
+INSTALL ENVIRONMENT
+--Excepts python2.7 and pip is installed.
+--If Python's virtualenv is not installed; install it:
+pip install virtualenv
+
+--Goto folder of src files.
+cd ../PCDS/src/linkedInLogin
+--Create hidden environment and activate it
+virtualenv -p /usr/bin/python2 .env
+source .env/bin/activate
+--Now install requirements:
+pip install -r requirements.txt
+-- You should now be able to run the code:
 
 
 You can now run code, e.g.
