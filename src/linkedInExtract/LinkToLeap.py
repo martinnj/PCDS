@@ -53,12 +53,24 @@ class Position(object):
     endDate = ""
     isCurrent = ""
     company = "" 
+    def __str__(self):
+        ret  = "  id = " +        self.id +     "\n  title = " +     self.title 
+        ret += "\n  summary = " + self.summary +"\n  startDate = " + self.startDate 
+        ret += "\n  endDate = " + self.endDate +"\n  isCurrent = " + self.isCurrent 
+        if (not self.company is ""):
+            ret += "\n  company = " + self.company.__str__()
+        else:
+            ret += "\n  company = " + self.company
+        return ret
 
 class Company(object):
     id = ""
     name = ""
     type = "" 
     ticker = ""
+    def __str__(self):
+        return "\n    id = " + self.id + "\n    name = " + self.name + "\n    type = " + self.type + "\n    ticker = " + self.ticker
+
 
 class Publication(object):
     id = ""
@@ -151,7 +163,7 @@ def createSub(name, className, data):
         elif(var == "name" and (name == "languages" or name == "skills" or name == "publishers")):
             classInstance.name = data[name[:-1]][var]
         elif(var == "level" and name == "languages"):
-            classInstance.level = data[name[:-1]][var]
+            classInstance.level = data["proficiency"][var]
         elif(var == "author"):
             classInstance.author = createSub(var, Author, get(data, var))
         else:
