@@ -19,16 +19,25 @@ class Person(object):
     phoneticFirstName = ""
     phoneticLastName = ""
     formattedPhoneticName = ""
-    publications = [] # a List of Publications
+    #Lists
+    publications = []
     positions = []
     skills = []
     educations = []
     courses = []
+    languages = []
+
+class Language(object):
+   id = ""
+   name = ""
+   level = ""
 
 class Course(object):
     id  = "" 
     name   = "" 
     number  = "" 
+    def __str__(self):
+        return "id = " + self.id + "\n  name = " + self.name + "\nnumber = " + number
 
 class Skill(object):
     id = ""
@@ -75,18 +84,17 @@ class Education(object):
     activities = ""
     notes = ""
 
-file = open('full_extraction_example.json')
-for line in file:
-    data = line
+class Certification(object):
+    id = ""
+    name = ""
+    authority = ""
+    number = ""
+    startDate = ""
+    endDate = ""
 
-if(data[1] == "u"):
-    json_data = ast.literal_eval(data)
-else:
-    json_data = json.loads(data)
 
 def get(data, query):
     if(query in data):
-        # print ("getting " + query + " with value " + str(data[query]) + " and type "  + str(type(data[query])))
         return data[query]
     else:
         return ""
@@ -104,11 +112,15 @@ def fillFullProfile(data):
         if(var == "publications"):
             for publication in getSub(data, "publications"):
                classInstance = createSub(var, Publication, publication) 
-               exec("person.%s.append(classInstance)" % var)
+               person.publications.append(classInstance)
+        elif(var == "languages"):
+           for language in getSub(data,"languages"):
+               classInstance = createSub(var, Language, language) 
+               person.languages.append(classInstance)
         elif(var == "positions"):
            for position in getSub(data,"positions"):
                classInstance = createSub(var, Position, position) 
-               exec("person.%s.append(classInstance)" % var)
+               person.positions.append(classInstance)
         elif(var == "educations"):
            for education in getSub(data,"educations"):
                classInstance = createSub(var, Education, education) 
@@ -119,6 +131,9 @@ def fillFullProfile(data):
         elif(var == "courses"):
             for course in getSub(data, "courses"):
                person.courses.append(createSub(var, Course, course))
+        elif(var == "certifications"):
+            for certification in getSub(data, "certifications"):
+               person.certification.append(createSub(var, Certification, certification))
         else: 
             exec("person.%s = \"%s\"" % (var, get(data,var)))
     return person
@@ -129,16 +144,18 @@ def createSub(name, className, data):
     for var in variables:
         if(var[-4:] == "Date"):
             exec("classInstance.%s = \"%s\"" % (var, formatDate(get(data,var))))
-        elif(var == "company"):
+        elif var == "company" :
             classInstance.company = createSub(var, Company, get(data, var))
-        elif(var == "name" and (name == "skills" or name == "publishers")):
+        elif var == "name" and name == "authorities":
+            classInstance.authority = data[name[:-1]][var]
+        elif(var == "name" and (name == "languages" or name == "skills" or name == "publishers")):
             classInstance.name = data[name[:-1]][var]
+        elif(var == "level" and name == "languages"):
+            classInstance.level = data[name[:-1]][var]
         elif(var == "author"):
             classInstance.author = createSub(var, Author, get(data, var))
         else:
             exec("classInstance.%s = \"%s\"" % (var,get(data,var)))
-        # exec()
-        # exec("print \"%s is \" + str(classInstance.%s)" % (var, var))
     return classInstance
 
 def formatDate(data):
@@ -146,5 +163,19 @@ def formatDate(data):
         return data
     return str(get(data,"month")) + "/" + str(get(data, "year"))
 
-person = fillFullProfile(json_data)
-# print person.courses[7].name
+def run(rawdata):
+    if(rawdata[1] == "u"):
+        json_data = ast.literal_eval(rawdata)
+    else:
+        json_data = json.loads(rawdata)
+    return fillFullProfile(json_data)
+
+def fromFile(path):
+    file = open(path)
+    data = ""
+    for line in file:
+        data += line
+    return run(data)
+
+def fromString(data):
+    return run(data)

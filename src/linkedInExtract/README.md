@@ -62,24 +62,10 @@ De data vi trækker ud fra LinkedIn og den struktur de har efter udtrækningen.
    - url
    - summary
 
-**Patent**
-   - id
-   - title
-   - summary
-   - number
-   - status:(id) 
-   - status:(name)
-   - office:(name)
-   - inventors:(id)
-   - inventors:(name)
-   - inventors:(person)
-   - url
-
 **Language** 
    - id
-   - language:(name)
-   - proficiency:(level) 
-   - proficiency:(name)  
+   - name
+   - proficiency level
 
 **Skill**
    - id
