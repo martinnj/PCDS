@@ -1,0 +1,16 @@
+Leapkit @ CBS - 25-05-2015:
+
+Things from LinkedIn:
+Their study/subject,
+How far they are (BSc & MSc),
+Interests,
+Skills.
+
+Graduateland ? - Other LinkedIn integration example.
+
+Is it possible to make an admin page where you can manually match students and projects?
+
+Createa a common versioning sytem so we can get updates from them, and the other way around. <------- THIS IS IMPORTANT! :D
+
+(Crossover with other project/nice to have) - Possible to do notifications/comms when matches happen between persons/projects.?
+Possible solution(still nice to have): When projects get generated, run matching with all users. Dump possible matches in a new table, once a week, run over the table and compile a project list for all users who got matched.
