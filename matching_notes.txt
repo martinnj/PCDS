@@ -22,3 +22,4 @@ positives. can be adjusted.
 Normalize all above:
 Find a way to normalize each of the above to a value between 0 and 1. Add them,
 and rank accordingly.
+Wright the different match types so the priorities can be adjusted.
