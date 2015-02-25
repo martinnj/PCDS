@@ -65,3 +65,4 @@ target/
 *.fls
 *.fdb_latexmk
 *.out
+*.json

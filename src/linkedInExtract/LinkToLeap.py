@@ -162,7 +162,7 @@ def createSub(name, className, data):
             classInstance.authority = data[name[:-1]][var]
         elif(var == "name" and (name == "languages" or name == "skills" or name == "publishers")):
             classInstance.name = data[name[:-1]][var]
-        elif(var == "level" and name == "languages"):
+        elif(var == "level" and name == "languages" and "proficiency" in data):
             classInstance.level = data["proficiency"][var]
         elif(var == "author"):
             classInstance.author = createSub(var, Author, get(data, var))
