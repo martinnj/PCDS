@@ -1,5 +1,5 @@
 #!/bin/bash
-echo Create hidden environment and activate it
+echo Create/overwrite hidden environment and activate it
 virtualenv -p /usr/bin/python2 .env
 source .env/bin/activate
 echo Successfully installed environment
