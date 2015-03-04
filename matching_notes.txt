@@ -1,14 +1,15 @@
 Matching methods:
 
-Top level matching:
-Companies select one or more fields that the project covers.
-This gets matched to the students "major".
-Any match returned.
+General approach:
+Return as many results as possible, consider even returning all projects in a 
+sorted order with regards to matching degree.
+
+
 
 Skill-based matching:
 We collate a skill DB based on skills scraped from student profiles. When
-creating projects, companies can chose some skills to attach to the project. We
-count number of matches between a student and a project. BAM!
+creating projects, companies can chose some skills to attach to the project. 
+The number of matches determines the matching degree.
 
 
 Text-based matching: 
@@ -19,6 +20,15 @@ match on the entire thing, and "system" and "management". Might return too many
 positives. can be adjusted.
 
 
+Top level matching:
+Companies select one or more fields that the project covers.
+This gets matched to the students "major".
+Any match returned.
+PROBLEMS:
+Does apply to general approach, but may be an addition to other matching methods.
+
+
 Normalize all above:
 Find a way to normalize each of the above to a value between 0 and 1. Add them,
 and rank accordingly.
+Wright the different match types so the priorities can be adjusted.
