@@ -8,6 +8,6 @@ pip install -r requirements.txt
 echo Successfully installed requirements.
 echo Run python unittests.
 echo Running py.test
-RES=py.test
+local RES=$(py.test)
 rm -rf .env
 return $RES
