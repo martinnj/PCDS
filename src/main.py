@@ -1,9 +1,9 @@
-from linkedInLogin.linkedin_connector import linkedin_connector
+from loginLinkedIn.linkedin_connector import linkedin_connector
 from linkedInExtract.linkToLeap import fromFile
 
 
 def main():
-    filePathExtractedResults = "linkedInLogin/" + linkedin_connector()
+    filePathExtractedResults = "loginLinkedIn/" + linkedin_connector()
     fromFile(filePathExtractedResults)
 
 
