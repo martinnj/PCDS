@@ -12,17 +12,19 @@ import urlparse
 import json
 
 
+FILE_NAME = 'linkedInResult.json'
+
 #Open browser of given name (default = Chrome), goto LinkedIn login side. 
 #After user log in, store all information extracted fron LinkedIn account to a 
 #file in json format.
 #Return filename of stored results.
 def linkedin_connector():
     # Setup LinkedIn connection
-    API_KEY = '75yv7bexwfjovt' #Leapkit unique API/Consumer key
-    API_SECRET = 'Jz3ElgF0hj1RAjb3' #Leapkit unique Secret key/Consumer Secret
+    __API_KEY = '75yv7bexwfjovt' #Leapkit unique API/Consumer key
+    __API_SECRET = 'Jz3ElgF0hj1RAjb3' #Leapkit unique Secret key/Consumer Secret
 
-    RETURN_URL = 'http://www.leapkit.com'
-    FILE_NAME = 'linkedInResult.json'
+    __RETURN_URL = 'http://www.leapkit.com'
+    
 
     # Only extract skills:
     #fields = 'skills'
@@ -49,17 +51,25 @@ def linkedin_connector():
 
     timeout_seconds = 180 #secs before timeout when loggin in to LinkedIn.
 
-    authentication = linkedin.LinkedInAuthentication(API_KEY, 
-                                                     API_SECRET, 
-                                                     RETURN_URL, 
+    authentication = linkedin.LinkedInAuthentication(__API_KEY, 
+                                                     __API_SECRET, 
+                                                     __RETURN_URL, 
                                                      linkedin.PERMISSIONS
                                                         .enums.values())
 
     #print authentication.authorization_url  # open this url on your browser
 
-    # Open browser with LinkedIN login. Then redirect to RETURN_URL
+    # Open browser with LinkedIN login. Then redirect to __RETURN_URL
+    try:
+        wbDriver = webdriver.Chrome()
+    except WebDriverException as e:
+        # we don't have a chrome executable or a chrome webdriver installed
+        wbDriver = webdriver.Firefox()
+
+
     try: 
-        with contextlib.closing(webdriver.Chrome()) as driver:
+        #with contextlib.closing(webdriver.Chrome()) as driver:
+        with contextlib.closing(wbDriver) as driver:
             driver.get(authentication.authorization_url) #go to linkedin login site
             wait = ui.WebDriverWait(driver, timeout_seconds) # timeout after timeout_seconds
             #inputElement = driver.find_element_by_name('Leapkit') #'viewport') #using title instead of element.
