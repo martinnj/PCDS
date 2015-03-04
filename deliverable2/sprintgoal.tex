@@ -1,12 +1,28 @@
 \section{Sprint Goal}
 % describe your experiences with version control and continuous integration
 
-We all had prior experience with Github. However the experience was mostly with everyone comitting to the master branch. For this project we chose to create branches in the repositories. We also chose to maintain to repositories, one for the project reports and experimental code, and one for the production code, containing the entire Leapkit solution.
+We all had prior experience with Github. However the experience was
+mostly with everyone comitting to the master branch. For this project we
+chose to create branches in the repositories. We also chose to maintain to
+repositories, one for the project reports and experimental code, and one
+for the production code, containing the entire Leapkit solution.
 
-The experimental repository contains 3 branches, \texttt{Master}, which is the main branch, it must be clean and all code/LaTeX must always be compileable. Commits directly to this branch is not allowed. We also have the \texttt{report} branch which is used for working with the reports. The last branch is \texttt{LinkedIn}, this branch contains experimental code for LinkedIn integration and notes for how to work with the data.
+The experimental repository contains 3 branches, \texttt{Master}, which
+is the main branch, it must be clean and all code/LaTeX must always be
+compileable. Commits directly to this branch is not allowed. We also have
+the \texttt{report} branch which is used for working with the reports. The
+last branch is \texttt{LinkedIn}, this branch contains experimental code
+for LinkedIn integration and notes for how to work with the data.
 
-The second repository is the production repository, this contains the entire Leapkit solution. Apart from the \texttt{master} branch which contains final releases. It also contains the branch \texttt{linkedin} - for work with the LinkedIn integration, and the branch \texttt{matchmaking} which is used for the algorithm development.
+The second repository is the production repository, this contains
+the entire Leapkit solution. Apart from the \texttt{master}
+branch which contains final releases. It also contains the branch
+\texttt{linkedin} - for work with the LinkedIn integration, and the branch
+\texttt{matchmaking} which is used for the algorithm development.
 
-for both repositories the only way to add code to \texttt{master} is to create pull requests from the relevant branches. To implement the continous integration strategy we will perform pull requests regularly to make sure \texttt{master} is always up to date. Put pull requests are only approved if the branch is runnable and pass any relevant test.
-
+for both repositories the only way to add code to \texttt{master} is
+to create pull requests from the relevant branches. To implement the
+continous integration strategy we will perform pull requests regularly
+to make sure \texttt{master} is always up to date. But pull requests are
+only approved if the branch is runnable and pass any relevant test. 
 \todo[inline]{Add experiences about how this worked out.}
