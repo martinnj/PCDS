@@ -1,6 +1,6 @@
 #!/bin/bash
 echo Create hidden environment
-virtualenv -p /usr/bin/python2 .env
+virtualenv -p /usr/bin/python2.7 .env
 
 echo Activate virtual environment
 source .env/bin/activate
