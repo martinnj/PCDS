@@ -12,6 +12,7 @@ echo Successfully installed requirements.
 
 echo Run python unittests.
 echo Running py.test
-local RES=$(py.test)
+py.test
+#local RES=$(py.test)
 #rm -rf .env
-return $RES
+#return $RES
