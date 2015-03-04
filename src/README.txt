@@ -15,7 +15,7 @@ pip install -r requirements.txt
 -- You should now be able to run the code:
 
 python main.py
-python linkedInLogin/linkedin_connector.py
+python loginLinkedIn/linkedin_connector.py
 
 
 main.py: 
@@ -26,7 +26,7 @@ requirements.txt:
     Contains required packages/libs to be installed in the 
     virtual environment.
 
-linkedInLogin: 
+loginLinkedIn: 
     Contains code for login and extraction of information from 
     LinkedIn. Saves in linkedInResult.json.
 linkedInExtract: 
