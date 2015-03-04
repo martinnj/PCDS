@@ -1,11 +1,15 @@
 #!/bin/bash
-echo Create hidden environment and activate it
+echo Create hidden environment
 virtualenv -p /usr/bin/python2 .env
+
+echo Activate virtual environment
 source .env/bin/activate
 echo Successfully installed environment
+
 echo Now installing requirements
 pip install -r requirements.txt
 echo Successfully installed requirements.
+
 echo Run python unittests.
 echo Running py.test
 local RES=$(py.test)
