@@ -1,7 +1,7 @@
 # Python2.7
 
 from linkedin import linkedin
-from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import TimeoutException, WebDriverException
 from httplib import CannotSendRequest
 
 
@@ -13,6 +13,12 @@ import json
 
 
 FILE_NAME = 'linkedInResult.json'
+
+try:
+    wbDriver = webdriver.Chrome()
+except WebDriverException as e:
+    # we don't have a chrome executable or a chrome webdriver installed
+    wbDriver = webdriver.Firefox()
 
 #Open browser of given name (default = Chrome), goto LinkedIn login side. 
 #After user log in, store all information extracted fron LinkedIn account to a 
@@ -60,12 +66,6 @@ def linkedin_connector():
     #print authentication.authorization_url  # open this url on your browser
 
     # Open browser with LinkedIN login. Then redirect to __RETURN_URL
-    try:
-        wbDriver = webdriver.Chrome()
-    except WebDriverException as e:
-        # we don't have a chrome executable or a chrome webdriver installed
-        wbDriver = webdriver.Firefox()
-
 
     try: 
         #with contextlib.closing(webdriver.Chrome()) as driver:
