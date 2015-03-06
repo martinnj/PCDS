@@ -1,2 +1,18 @@
 \section{Sprint Goal}
 % describe your experiences with version control and continuous integration
+
+We all had prior experience with Github. However this experience has mostly been with everyone comitting to the master branch. For this project we chose to create branches for different segments, e.g. development/experimental code (\texttt{LinkedIn}, to-be-tested-and-integrated code (\texttt{Master} branch), and we will probably also do this for the database work and/or the virtual environment and via this, the integration of our code with their webpage solution.
+We also have a branch for reports and other documents (\texttt{report}).
+
+We chose to maintain two repositories, one for development (the above) and one for the production code containing the entire Leapkit solution with our releases.
+
+The production repository contains the entire Leapkit solution. Apart from the \texttt{master}
+branch which contains final releases, it also contains the branch \texttt{linkedin} for work with the LinkedIn integration, and the branch \texttt{matchmaking} which is used for the integration of algorithm development.
+
+The only way to add code to \texttt{master} branches of the two repositories is via pull requests from the relevant branches.
+
+To implement the continous integration strategy we will perform pull requests regularly
+to make sure \texttt{master} is always up to date. But pull requests are only approved if the branch is runnable and pass any relevant test.
+\todo[inline]{Add experiences about how this worked out.}
+
+We are setting up Jenkins and a test suite. The test suite shall seek to follow the Python standard on testing: \url{http://docs.python-guide.org/en/latest/writing/tests/}, using \textit{unittest} and \textit{pytest}. Other testing mechanics will be added for database and webpage development later, when appropriate.

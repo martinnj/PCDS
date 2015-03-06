@@ -7,6 +7,7 @@
 \linespread{1.2}
 \usepackage{courier}
 
+\usepackage{subcaption}
 \usepackage{graphicx} % Allows figures
 \usepackage{amsmath}%,amssymb,amsthm,amsfonts,ulem}
 \usepackage{hyperref}
@@ -16,9 +17,9 @@
 \usepackage{caption}
 \usepackage{todonotes}
 
-% subtable
-\usepackage{subfig}% http://ctan.org/pkg/subfig
-\usepackage{booktabs}% http://ctan.org/pkg/booktabs
+% subtable --CONFLICTS WITH subcaption
+%\usepackage{subfig}% http://ctan.org/pkg/subfig
+%\usepackage{booktabs}% http://ctan.org/pkg/booktabs
 
 %Section style
 \usepackage{etoolbox} %for configuration of sloppy
@@ -42,7 +43,7 @@
 
 
 % Frontpage stuff
-\title{Deliverable 2 - Project Course: Development Studio 2014 \\ Team India}
+\title{Deliverable 2 - Project Course: Development Studio 2014 \\ Team India \includegraphics[width=.05\textwidth]{india.png}}
 \author
 {
     Martin Jørgensen \\
@@ -60,7 +61,7 @@
     Department of Computer Science \\
     {\tt pvx884@alumni.ku.dk}
     \and
-    Lasse Madsen \\
+    Lasse Ahlbech Madsen \\
     University of Copenhagen \\
     Department of Computer Science \\
     {\tt xsc606@alumni.ku.dk}
