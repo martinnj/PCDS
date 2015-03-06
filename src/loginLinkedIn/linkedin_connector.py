@@ -17,8 +17,14 @@ FILE_NAME = 'linkedInResult.json'
 try:
     wbDriver = webdriver.Chrome()
 except WebDriverException as e:
-    # we don't have a chrome executable or a chrome webdriver installed
     wbDriver = webdriver.Firefox()
+    # we don't have a chrome executable or a chrome webdriver installed
+    #fp = webdriver.FirefoxProfile()
+    # Here "2" stands for "Automatic Proxy Configuration"
+    #fp.set_preference("network.proxy.type", 2)
+    #fp.set_preference("network.proxy.autoconfig_url",
+    #                  "http://www.google.com") 
+    #wbDriver = webdriver.Firefox(firefox_profile=fp)
 
 #Open browser of given name (default = Chrome), goto LinkedIn login side. 
 #After user log in, store all information extracted fron LinkedIn account to a 
@@ -28,7 +34,6 @@ def linkedin_connector():
     # Setup LinkedIn connection
     __API_KEY = '75yv7bexwfjovt' #Leapkit unique API/Consumer key
     __API_SECRET = 'Jz3ElgF0hj1RAjb3' #Leapkit unique Secret key/Consumer Secret
-
     __RETURN_URL = 'http://www.leapkit.com'
     
 
