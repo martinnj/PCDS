@@ -15,7 +15,7 @@ class Person(object):
     positions = ""
     pictureUrl = ""
     publicProfileUrl = ""
-    formatted_name = ""
+    formattedName = ""
     phoneticFirstName = ""
     phoneticLastName = ""
     formattedPhoneticName = ""
@@ -33,9 +33,9 @@ class Language(object):
    level = ""
 
 class Course(object):
-    id  = "" 
-    name   = "" 
-    number  = "" 
+    id  = ""
+    name   = ""
+    number  = ""
     def __str__(self):
         return "id = " + self.id + "\n  name = " + self.name + "\nnumber = " + number
 
@@ -46,17 +46,17 @@ class Skill(object):
         return "id = " + self.id + ", name = " + self.name
 
 class Position(object):
-    id = "" 
+    id = ""
     title = ""
     summary = ""
     startDate = ""
     endDate = ""
     isCurrent = ""
-    company = "" 
+    company = ""
     def __str__(self):
-        ret  = "  id = " +        self.id +     "\n  title = " +     self.title 
-        ret += "\n  summary = " + self.summary +"\n  startDate = " + self.startDate 
-        ret += "\n  endDate = " + self.endDate +"\n  isCurrent = " + self.isCurrent 
+        ret  = "  id = " +        self.id +     "\n  title = " +     self.title
+        ret += "\n  summary = " + self.summary +"\n  startDate = " + self.startDate
+        ret += "\n  endDate = " + self.endDate +"\n  isCurrent = " + self.isCurrent
         if (not self.company is ""):
             ret += "\n  company = " + self.company.__str__()
         else:
@@ -66,7 +66,7 @@ class Position(object):
 class Company(object):
     id = ""
     name = ""
-    type = "" 
+    type = ""
     ticker = ""
     def __str__(self):
         return "\n    id = " + self.id + "\n    name = " + self.name + "\n    type = " + self.type + "\n    ticker = " + self.ticker
@@ -123,19 +123,19 @@ def fillFullProfile(data):
     for var in variables:
         if(var == "publications"):
             for publication in getSub(data, "publications"):
-               classInstance = createSub(var, Publication, publication) 
+               classInstance = createSub(var, Publication, publication)
                person.publications.append(classInstance)
         elif(var == "languages"):
            for language in getSub(data,"languages"):
-               classInstance = createSub(var, Language, language) 
+               classInstance = createSub(var, Language, language)
                person.languages.append(classInstance)
         elif(var == "positions"):
            for position in getSub(data,"positions"):
-               classInstance = createSub(var, Position, position) 
+               classInstance = createSub(var, Position, position)
                person.positions.append(classInstance)
         elif(var == "educations"):
            for education in getSub(data,"educations"):
-               classInstance = createSub(var, Education, education) 
+               classInstance = createSub(var, Education, education)
                person.educations.append(classInstance)
         elif(var == "skills"):
             for skill in getSub(data, "skills"):
@@ -146,17 +146,17 @@ def fillFullProfile(data):
         elif(var == "certifications"):
             for certification in getSub(data, "certifications"):
                person.certification.append(createSub(var, Certification, certification))
-        else: 
+        else:
             exec("person.%s = \"%s\"" % (var, get(data,var)))
     return person
-    
+
 def createSub(name, className, data):
     variables = [s for s in dir(className) if s[0] != '_']
     classInstance = className()
     for var in variables:
         if(var[-4:] == "Date"):
             exec("classInstance.%s = \"%s\"" % (var, formatDate(get(data,var))))
-        elif var == "company" :
+        elif var == "company":
             classInstance.company = createSub(var, Company, get(data, var))
         elif var == "name" and name == "authorities":
             classInstance.authority = data[name[:-1]][var]
