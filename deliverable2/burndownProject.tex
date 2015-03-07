@@ -21,21 +21,31 @@
             (0,6) node[anchor=east] {60};
 
 % current sprint 
-    \draw[thick, dotted, olive] (1,0) -- (1,7);
+    \draw[thick, dashed, olive] (1,0) -- (1,7);
 % label
-    \draw (3.5,7) node[anchor=east] {\emph{Current Sprint}};
+    % \draw (3,3.7.5) node[anchor=east] {\emph{This Sprint}};
+
+% next sprint 
+    \draw[thick, dashed, purple] (2,0) -- (2,7);
+% label
+    % \draw (4.4,6.5) node[anchor=east] {\emph{Next Sprint}};
 
 % projected 
     \draw[thick, dotted, red] (0,6) -- (5,0);
 % actual
     \draw[thick, blue] (0,6) -- (1,4.5);
+% actual
+    \draw[thick, dashed, blue] (1,4.5) -- (2,3.1);
     
 \begin{scope}[shift={(4,4)}] 
     \draw[thick, dotted, red] (0,0) -- (0.5,0) 
         node[black, right]{Project Projection};
-    \draw[thick, blue, yshift=\baselineskip] (0,0) -- 
-        plot[] (0.25,0) -- (0.5,0)
+    \draw[thick, blue, yshift=\baselineskip * - 1] (0,0) -- (0.5,0)
         node[black, right]{Actual Project};
+    \draw[thick, dashed, purple, yshift=\baselineskip] (0,0) -- (0.5,0)
+        node[black, right]{Next Sprint};
+    \draw[thick, dashed, olive, yshift=\baselineskip * 2] (0,0) -- (0.5,0)
+        node[black, right]{This Sprint};
 \end{scope}
 
 \end{tikzpicture}
