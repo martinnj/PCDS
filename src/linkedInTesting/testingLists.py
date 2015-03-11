@@ -60,5 +60,6 @@ def generateLanguages():
     languages = getLanguages()
     for i in range(LengthOfLanguageGeneration):
         generated.append((random.choice(languages),i))
+    return generated
 
 # print generateRandomSkills()
