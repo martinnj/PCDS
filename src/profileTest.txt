@@ -1,2 +1,11 @@
 mail: kasperp.spam@gmail.com
 pwd : Leap123
+
+
+Company          : Pirates Ohoy
+Application Name : ExtractionUnitTest
+API Key          : 77d39rnu0jgxhc
+Secret Key       : SRjbrl5ajSwkbpMH
+OAuth User Token : c87cfe99-0997-4393-bc8a-09bc60bbbaf4
+OAuth User Secret: 1e37a040-934a-4047-8852-4fdc5c378b7c
+

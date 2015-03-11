@@ -68,3 +68,6 @@ target/
 *.fdb_latexmk
 *.out
 *.json
+
+# ignoring generated json
+jsonGenerated.json
