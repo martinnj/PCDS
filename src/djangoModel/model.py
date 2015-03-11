@@ -1,10 +1,9 @@
 from django.db import models
 
-
 def insertPerson(p):
     person = Person(linkedin_id = int(person.id) ,firstname = p.firstName,
             maidenName = p.maidenName, lastName = p.lastName,
-            headline = p.headline, location = p.location,i ndustry = p.industry,
+            headline = p.headline, location = p.location, industry = p.industry,
             summary = p.summary, specialities = p.specialities,
             positions = p.positions, pictureUrl = p.pictureUrl,
             publicProfileUrl = p.publicProfileUrl, formattedName =
@@ -31,8 +30,6 @@ def insertPerson(p):
     for c in p.courses:
         cou = Course(cour_id = int(c.id), name = c.name, person = p)
         p.save()
-
-
 
 class Person(models.Model):
     linkedin_id = models.IntegerField()
