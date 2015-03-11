@@ -1,12 +1,10 @@
 from linkedInExtract.linkToLeap import fromFile
-from linkedInTesting.linkedInJsonGenerator import generate
-
+from linkedInTesting.linkedInJsonGenerator import main 
+import sys
 
 def main():
-    filePathExtractedResults = generate() 
+    filePathExtractedResults = main()
     return fromFile(filePathExtractedResults)
 
-
 if __name__ == "__main__":
-    import sys
     main()
