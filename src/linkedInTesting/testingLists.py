@@ -15,7 +15,7 @@ def getSkills():
     """
     out = []
     i = 0
-    for line in open("skills.txt"):
+    for line in open("linkedInTesting/skills.txt"):
         out.append((line.strip(), i))
         i += 1
     return out
@@ -27,7 +27,7 @@ def getLanguages():
     """
     out = []
     i = 0
-    for line in open("languages.txt"):
+    for line in open("linkedInTesting/languages.txt"):
         out.append((line.strip(), i))
         i += 1
     return out
