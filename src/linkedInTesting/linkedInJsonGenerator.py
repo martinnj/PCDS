@@ -1,4 +1,4 @@
-import json
+import json as jsonM
 import string
 import random
 import testingLists as lists
@@ -65,7 +65,7 @@ def generate(genLists):
     (first, maiden, last) = names()
     dic = {"skills" : skill, "languages" : language, "firstName" : first, 
            "maidenName" : maiden, "lastName" : last}
-    return json.dumps(dic)
+    return dic
 
 def writeTo(path, s):
     """Writes the String s into the file at path, returns the path and the
@@ -76,12 +76,14 @@ def writeTo(path, s):
     f.close()
     return (path, s)
 
-def main():
+def generateAll():
+    """Generates tests based on the constants in the method"""
     # generateLists = True 
     generateLists = False
     # dirty = True
     dirty = False 
     amount = 1000
+    path = "linkedInTesting/jsonGenerated.json"
 
     genLists = []
 
@@ -92,11 +94,14 @@ def main():
         genLists.append(lists.getSkills())
         genLists.append(lists.getLanguages())
 
-    json = []
+    dics = []
+    jsons = []
     for _ in range(amount):
-        json.append(generate(genLists))
-    # print json
-    return writeTo("linkedInTesting/jsonGenerated.json", json)
+        element = generate(genLists)
+        jsons.append(jsonM.dumps(element))
+        dics.append(element)
+    writeTo(path, jsons)
+    return (dics, path)
 
 if __name__ == "__main__":
     main()
