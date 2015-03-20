@@ -1,5 +1,6 @@
+#!/bin/env python2
 
-import operator
+#import operator
 
 ############### HELPER METHODS ###############
 
