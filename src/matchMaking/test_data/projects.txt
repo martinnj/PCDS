@@ -1,0 +1,10 @@
+1::DatabaseDesign|C++|XML|DataWarehousing|JUnit|Algorithms|Erlang|C++|Github|C#
+2::SQL|ProactiveComputerSecurity|Tcl-Td|Databases|IntelliJ|LaTeX|DistributedSystems|Matlab|DataWarehousing|Toad
+3::DatabaseDesign|MSSQL|ArchLinux|SystemsManagement|SQL|Erlang|XML|Algorithms|VisualStudio|ObjectOrientedDesign
+4::ProgrammingComputerScience|Tcl-Td|DataWarehousing|ArchLinux|ProactiveComputerSecurity|IntelliJ|PenetrationTesting|Java|SQL|Java
+5::ProactiveComputerSecurity|SML|Algorithms|DistributedSystems|VisualStudio|DatabaseDesign|LaTeX|SoftwareDevelopment|ObjectOrientedDesign|C
+6::JUnit|Subversion|Maple|JUnit|UnitTesting|ProactiveComputerSecurity|DataWarehousing|Databases|Github|ComputerScience
+7::SoftwareDevelopment|UnitTesting|Maple|Databases|VisualStudio|IntelliJ|ObjectOrientedDesign|IntelligenceGathering|ObjectOrientedDesign|C
+8::C#|C|ProactiveComputerSecurity|C|Databases|Matlab|Haskell|Matlab|Haskell|Insurgency
+9::ProactiveComputerSecurity|ComputerScience|VisualStudio|DataWarehousing|SoftwareDevelopment|Tcl-Td|PenetrationTesting|IntelliJ|UnitTesting|ProactiveComputerSecurity
+10::Databases|Git|SoftwareDevelopment|Java|Java|Github|PenetrationTesting|Matlab|Databases|Programming

@@ -46,22 +46,59 @@ def containsStringCompare(string, stringList):
 
 #Returns list project names ordered by matching degree.
 #Only take skills into account, not languages, etc.
-def compareSkills():
-    output = {} #projectName -> degree of match
-    sourceSkillList = [""]
-    projectSkillDict = {} #projectName -> [skillsRequired]
+def compareSkills(userSkills, projects):
     stringComparefunction = strictCompare
 
-    #TODO Get list of source(user) skills
-    #TODO Get list of lists og target(project) skills
-
-    for projectName in projectSkillDict:
-        d = matchListsOfStrings(sourceSkillList, projectSkillDict[projectName], 
-                            stringComparefunction)
-        output[projectName] = d
-
-    #sortedProjectList = sorted(output.items(), key=operator.itemgetter(1))
-    sortedProjectList = sorted(output, key=output.get)
+    sortedProjectList = [(projId, matchListsOfStrings(userSkills, projSkills, stringComparefunction) ) for projId, projSkills in projects]
+    sortedProjectList.sort(key=lambda tup: tup[1], reverse=True)
 
     return sortedProjectList
     
+
+
+
+############### SETUP METHODS ###############3
+# Used for testing purposes
+
+def parseSkills(line):
+    return line.split("|")
+
+
+def loadProjects(path):
+    projects = []
+    for line in open(path):
+        fields = line.strip().split("::")
+        skills = parseSkills(fields[1])
+        project_id = int(fields[0])
+
+        projects.append( (project_id, skills) )
+    return projects
+
+def loadUser(path):
+    skills = []
+    for line in open(path): #should only run once
+        fields = line.strip().split("::")
+        skills = parseSkills(fields[1])
+    return skills
+
+#Prints projects
+def printProjects(projects):
+    for projId, d in projects:
+        print("Project:", projId, "with match degree:", d)
+
+
+if __name__ == "__main__":
+    import sys
+    n = len(sys.argv)
+
+    if n <= 2:
+        print("Path to user and project not provieded. Please give two args with paths to these.")
+        sys.exit(0)
+    elif n == 3:
+        pathUser = sys.argv[1]
+        userSkills = loadUser(pathUser)
+        pathProj = sys.argv[2]
+        projects = loadProjects(pathProj)
+
+        projectsOrdered = compareSkills(userSkills, projects)
+        printProjects(projectsOrdered)
