@@ -26,7 +26,7 @@ def matchListsOfStrings(sourceList, targetList, compareFun):
     for skill in sourceList:
         matchSum += compareFun(skill, targetList)
 
-    return matchSum / len(sourceList)
+    return float(matchSum) / len(sourceList)
 
 
 
@@ -84,7 +84,7 @@ def loadUser(path):
 #Prints projects
 def printProjects(projects):
     for projId, d in projects:
-        print("Project:", projId, "with match degree:", d)
+        print "Project:", projId, "with match degree:", d
 
 
 if __name__ == "__main__":
