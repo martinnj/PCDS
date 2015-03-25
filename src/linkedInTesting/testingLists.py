@@ -2,7 +2,7 @@ import string
 import random
 
 # Settings for generation
-lengthOfSkillGeneration = 10
+lengthOfSkillGeneration = 20
 LengthOfLanguageGeneration = 3
 
 #skillsList = [("Programming", 2), ("SQL", 3), ("Databases", 4), ("Database Design", 6), ("Software Design", 7), ("Computer Science", 9), ("Software Development", 33), ("Java", 34), ("Eclipse", 35), ("Erlang", 36), ("SML", 37), ("Tcl-Td", 38), ("Data Warehousing", 39), ("Oracle Warehouse Bildeid", 40), ("Toad", 41), ("XML", 42), ("Arch Linux", 44), ("Haskell", 46), ("Matlab", 47), ("C", 49), ("Algorithms", 50), ("Distributed Systems", 52), ("Object Oriented Dsigid", 53),("LaTeX",5)]
