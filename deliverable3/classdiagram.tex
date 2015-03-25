@@ -19,10 +19,10 @@
 
 \tikzset{
     big arrow/.style={
-        decoration={markings,mark=at position 1 with {\arrow[scale=4,#1]{>}}},
+        decoration={markings,mark=at position 1 with {\arrow[scale=2,#1]{>}}},
         postaction={decorate},
         shorten >=0.4pt}}
-\tikzstyle{line} = [draw, thick, color=black!50, -latex', big arrow]
+\tikzstyle{line} = [draw, thick, color=black!50, big arrow]
 % Define distances for bordering
 
 \newcommand{\practica}[2]{node (p#1) [practica] {#2}}
@@ -54,16 +54,12 @@
     \path (a1.east |- a1.south)+(0.8,-0.3) node (u1)[texto]
     {\scriptsize\textit{#5}};
   \end{pgfonlayer}} 
-
-\begin{tikzpicture}[scale = 0.9]
-
-
+\begin{tikzpicture}[scale = 0.7]
 % Draw diagram elements
 \path                          \practica{1}{LinkedIn User};
 
 \path (p1.south) +( 0.0,-6.0) \practica{2}{LinkedIn Extractor};
 \path (p2.south) +( 0.0,-2.0) \practica{3}{Json Transformer};
-
 
 \path (p2.east)+(4.0,0.0) \practica{7}{Leapkit Project};
 \path (p7.south)+(0.0,-2.0) \practica{6}{LinkedIn User};
@@ -75,25 +71,24 @@
 \path (p1.east)+(8.0,0.0) \practica{11}{User};
 
 % Draw arrows between elements
-\path [line] (p10.north) -- node [left] {\textbf{OAuth}} (p1);
+\path [line] (p10.north) -- node [above] {\textbf{OAuth}} (p1);
 \path [line] (p1.south) -- node [left] {\textbf{Respons}} (p2);
 
-\path [line] (p2.south) -- node [right] {\textbf{Json}} (p3);
+\path [line] (p2.south) -- node [left] {\textbf{Json}} (p3);
 
 \path [line] (p3.east) -- (p6);
 \path [line] (p6.east) -- (p9);
 \path [line] (p7.east) -- (p9);
 \path [line] (p8.east) -- (p9);
-\path [line] (p9.north) -- (12.2,-4.58);
-\path [line] (p11.south) -- node [left] {\textbf{HTTP}} (10.2, -3.4);
-\path [line] (10.2, -3.4) -- node [left] {\textbf{HTTP}} (p11.south);
+\path [line] (p9.north) -- (13.5,-4.78);
+\path [line] (p11.south) -- (10.7, -3.2);
+\path [line] (10.7, -3.2) -- node [left] {\textbf{HTTP}} (p11.south);
 
 \background{p1}{p1}{p1}{p1}{LinkedIn Site}
 \backgroundDB{p1}{p1}{p1}{p1}{Database}
 
 \background{p2}{p10}{p9}{p8}{Leapkit API}
-\path [line] (5,-5.5) -- (5,-4.56);
-\path [line] (5,-4.56) -- (5,-5.5);
+\path [line] (5,-5.5) -- (5,-4.8);
+\path [line] (5,-4.8) -- (5,-5.5);
 \backgroundDB{p7}{p7}{p8}{p8}{Database}
-
 \end{tikzpicture}
