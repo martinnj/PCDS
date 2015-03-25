@@ -15,6 +15,11 @@
 \tikzstyle{long} = [rectangle, text width=8em, minimum width=26em,
   minimum height=3em, rounded corners, drop shadow]
 
+\tikzstyle{yoloswag}=[draw, fill=red!20, text width=6.0em, text centered,
+  minimum height=1.5em,drop shadow]
+\tikzstyle{redBox} = [yoloswag, text width=8em, minimum width=10em,
+  minimum height=3em, rounded corners, drop shadow]
+
 \tikzstyle{texto} = [above, text width=6em, text centered]
 
 \tikzset{
@@ -26,6 +31,7 @@
 % Define distances for bordering
 
 \newcommand{\practica}[2]{node (p#1) [practica] {#2}}
+\newcommand{\redBox}[2]{node (p#1) [redBox] {#2}}
 \newcommand{\longhorse}[2]{node (p#1) [long] {#2}}
 \newcommand{\implemented}[2]{node (p#1) [interface] {#2}}
  
@@ -68,7 +74,7 @@
 \path (p6.east)+(4.0,0.0) \practica{9}{Matchmaking};
 \path (p7.north)+(3.0,2.0) \longhorse{10}{Leapkit Frontend};
 
-\path (p1.east)+(8.0,0.0) \practica{11}{User};
+\path (p1.east)+(8.0,0.0) \redBox{11}{User};
 
 % Draw arrows between elements
 \path [line] (p10.north) -- node [above] {\textbf{OAuth}} (p1);
@@ -87,7 +93,7 @@
 \background{p1}{p1}{p1}{p1}{LinkedIn Site}
 \backgroundDB{p1}{p1}{p1}{p1}{Database}
 
-\background{p2}{p10}{p9}{p8}{Leapkit API}
+\background{p2}{p10}{p9}{p8}{Leapkit Site}
 \path [line] (5,-6.5) -- (5,-5.8);
 \path [line] (5,-5.8) -- (5,-6.5);
 \backgroundDB{p7}{p7}{p8}{p8}{Database}
