@@ -1,7 +1,7 @@
 
 \documentclass[a4paper,11pt]{article}
 \usepackage{a4wide}
-\usepackage[utf8]{inputenc}
+\usepackage[latin1]{inputenc}
 \usepackage{ucs}
 \usepackage[T1]{fontenc}
 \linespread{1.2}
@@ -16,10 +16,6 @@
 \usepackage{wrapfig}
 \usepackage{caption}
 \usepackage{todonotes}
-
-% subtable --CONFLICTS WITH subcaption
-%\usepackage{subfig}% http://ctan.org/pkg/subfig
-%\usepackage{booktabs}% http://ctan.org/pkg/booktabs
 
 %Section style
 \usepackage{etoolbox} %for configuration of sloppy
@@ -41,12 +37,12 @@
 
 {\sloppy}{\hbadness 10000\relax}{}{} %adds hbadness to sloppy
 
-
+ 
 % Frontpage stuff
-\title{Deliverable 2 - Project Course: Development Studio 2014 \\ Team India \includegraphics[width=.04\textwidth]{india.png}}
+\title{Deliverable 3 - Project Course: Development Studio 2014 \\ Team India \includegraphics[width=.04\textwidth]{india.png}}
 \author
 {
-    Martin J\o rgensen \\
+    Martin Jørgensen \\ 
     University of Copenhagen \\
     Department of Computer Science \\
     {\tt tzk173@alumni.ku.dk}
@@ -74,11 +70,14 @@
 
 \tableofcontents
 \pagebreak
-
 \input{projectdata}
 \input{sprintreport}
 \input{sprintretrospective}
 \input{sprintgoal}
-
-
+\begin{figure}[h]
+    \centering
+    \input{classdiagram.tex}
+    \caption{Class diagram of our design}
+    \label{fig:design}
+\end{figure}
 \end{document}

@@ -1,0 +1,37 @@
+\section{Sprint Report}
+% stories completed, progress report (e.g., through a burndown chart), next sprint
+
+\subsection{Current Sprint}
+
+The following stories was completed as planed at the start of the sprint:
+\begin{itemize}
+    \item Create code that can save the translated LinkedIn data to the Leapkit Database.
+    \item Setup Jenkins environment
+    \item Implement basic match making algorithm ready for iterative developement/extensions
+    \item Create test suite for the code generated in the previous sprint.
+\end{itemize}
+
+\begin{figure}[!ht]
+    \centering
+    \begin{subfigure}[b]{0.5\textwidth}
+        \scalebox{.6}{\input{burndownSprint}}
+        \caption{Burndown of the current sprint}
+        \label{fig:burndownSprint}
+    \end{subfigure}%
+    \begin{subfigure}[b]{0.5\textwidth}
+        \scalebox{.7}{\input{burndownProject}}
+        \caption{Burndown of the project}
+        \label{fig:burndownProject}
+    \end{subfigure}
+    \caption{Burndown charts}
+\end{figure}
+
+\subsection{Next Sprint}
+Next sprint will focus on integration of the current into the Leapkit solution. After this integration, the matchmaking algorithm can iteratively be expanded and CI will be the focus point.
+\begin{itemize}
+\item Finish database design and implementation
+\item Integrate LinkedIn redirection and extraction
+\item Integrate database solution
+\item Integrate match making solution
+\item Further expansion on match making algorithm
+\end{itemize}
