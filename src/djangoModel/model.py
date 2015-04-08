@@ -1,7 +1,7 @@
 from django.db import models
 
 def insertPerson(p):
-    person = Person(linkedin_id = int(person.id) ,firstname = p.firstName,
+    person = Person(linkedin_id = int(p.id) ,firstname = p.firstName,
             maidenName = p.maidenName, lastName = p.lastName,
             headline = p.headline, location = p.location, industry = p.industry,
             summary = p.summary, specialities = p.specialities,
@@ -62,7 +62,7 @@ class Course(models.Model):
 
 class Skill(models.Model):
    skill_id = models.IntegerField()
-   name = models.CharField(max_length = 30)
+   name = models.CharField(max_length = 81)
    person = models.ForeignKey(Person)
 
 class Education(models.Model):
