@@ -32,7 +32,7 @@ def linkedin_get_url(return_url = 'http://www.leapkit.com'):
                                                      return_url, 
                                                      linkedin.PERMISSIONS
                                                         .enums.values())
-    #print authentication.authorization_url  # open this url on your browser
+    print authentication.authorization_url  # open this url on your browser
 
     return authentication.authorization_url
 
