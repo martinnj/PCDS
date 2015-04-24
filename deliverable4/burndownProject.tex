@@ -21,21 +21,21 @@
             (0,6) node[anchor=east] {60};
 
 % current sprint 
-    \draw[thick, dashed, olive] (2,0) -- (2,7);
-% label
-    % \draw (3,3.7.5) node[anchor=east] {\emph{This Sprint}};
-
+    \draw[thick, dashed, olive] (3,0) -- (3,7);
 % next sprint 
-    \draw[thick, dashed, purple] (3,0) -- (3,7);
+    \draw[thick, dashed, purple] (4,0) -- (4,3);
+    \draw[thick, dashed, purple] (4,5.5) -- (4,7);
+
 % label
     % \draw (4.4,6.5) node[anchor=east] {\emph{Next Sprint}};
 
 % projected 
     \draw[thick, dotted, red] (0,6) -- (5,0);
+
 % actual
-    \draw[thick, blue] (0,6) -- (1,4.5) -- (2,3.1);
-% actual
-    \draw[thick, dashed, blue] (2,3.1) -- (3,2.0);
+    \draw[thick, blue] (0,6) -- (1,4.5) -- (2,3.1) -- (3,2);
+% actual projected
+    \draw[thick, dashed, blue] (3,2) -- (4,1.0);
     
 \begin{scope}[shift={(4,4)}] 
     \draw[thick, dotted, red] (0,0) -- (0.5,0) 
