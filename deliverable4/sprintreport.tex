@@ -2,7 +2,7 @@
 % stories completed, progress report (e.g., through a burndown chart), next sprint
 
 \subsection{Current Sprint}
-
+Figure \ref{fig:burndown} shows our burndown on this sprint, and the progress of the project.\\
 In the previous sprint we agreed to the following sprint goals for this sprint. 
 \begin{itemize}
     \item Finish database design and implementation
@@ -14,23 +14,23 @@ In the previous sprint we agreed to the following sprint goals for this sprint.
 Based on this we added the following tasks to our sprint. Not all these story points were chosen at the start of the 
 sprint, as some were added as the sprint came towards its conclusion either from splitting previous storypoints or 
 from moving to fast through the sprint.
-% 4 +  
 \begin{itemize}
     \item Implement basic match making algorithm ready for iterative developement/extensions.
     \item Integrate LinkedIn database with LinkedIn extraction. 
     \item Integrate matchmaking algorithm in Leapkit source.
     \item Create database for LinkedIn data
     \item Create code that can save the translated LinkedIn data to a database.
-    \item Create code for the matchmaking alg.
+    \item Implement basic match making algorithm ready for iterative developement/extensions 
     \item Create update logic for the LinkedIn data -- a user has changed information on LinkedIn and now the local data must be updated.
 \end{itemize}
-Lastly we added the following items to our backlog:
+Among these we did not complete \emph{Integrate matchmaking algorithm in Leapkit source} on time for the sprints deadline, so it has been readded to the backlog.
+Lastly we added the following new items to our backlog:
 \begin{itemize}
     \item Convert LinkedIn extractor to class/object, to make it nicer/simpler.
     \item Show LinkedIn information on student profile view.
     \item GUI response when updating user information with LinkedIn.
 \end{itemize}
-
+% This sprint = 23 points
 \begin{figure}[!ht]
     \centering
     \begin{subfigure}[b]{0.5\textwidth}
@@ -44,6 +44,7 @@ Lastly we added the following items to our backlog:
         \label{fig:burndownProject}
     \end{subfigure}
     \caption{Burndown charts}
+    \label{fig:burndown}
 \end{figure}
 
 \subsection{Next Sprint}
