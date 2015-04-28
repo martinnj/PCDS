@@ -11,6 +11,9 @@ import selenium.webdriver.support.ui as ui
 import urlparse
 import json
 
+__API_KEY = '75yv7bexwfjovt' #Leapkit unique API/Consumer key
+__API_SECRET = 'Jz3ElgF0hj1RAjb3' #Leapkit unique Secret key/Consumer Secret
+__RETURN_URL = 'http://www.leapkit.com'
 
 FILE_NAME = 'linkedInResult.json'
 
@@ -18,25 +21,53 @@ try:
     wbDriver = webdriver.Chrome()
 except WebDriverException as e:
     wbDriver = webdriver.Firefox()
-    # we don't have a chrome executable or a chrome webdriver installed
-    #fp = webdriver.FirefoxProfile()
-    # Here "2" stands for "Automatic Proxy Configuration"
-    #fp.set_preference("network.proxy.type", 2)
-    #fp.set_preference("network.proxy.autoconfig_url",
-    #                  "http://www.google.com") 
-    #wbDriver = webdriver.Firefox(firefox_profile=fp)
 
-#Open browser of given name (default = Chrome), goto LinkedIn login side. 
-#After user log in, store all information extracted fron LinkedIn account to a 
-#file in json format.
-#Return filename of stored results.
-def linkedin_connector():
-    # Setup LinkedIn connection
-    __API_KEY = '75yv7bexwfjovt' #Leapkit unique API/Consumer key
-    __API_SECRET = 'Jz3ElgF0hj1RAjb3' #Leapkit unique Secret key/Consumer Secret
-    __RETURN_URL = 'http://www.leapkit.com'
-    
 
+
+# Returns url to our linkedin application.
+# Takes a return url to be redirected to after linkedin login.
+def linkedin_get_url(return_url = 'http://www.leapkit.com'):
+    authentication = linkedin.LinkedInAuthentication(__API_KEY, 
+                                                     __API_SECRET, 
+                                                     return_url, 
+                                                     linkedin.PERMISSIONS
+                                                        .enums.values())
+    print authentication.authorization_url  # open this url on your browser
+
+    return authentication.authorization_url
+
+
+# Returns 1 if extraction was successful, otherwise 0.
+# Takes the given redirect uri, i.e. the LinkedIn url in browser after login.
+# Takes the return_url used in the linkedin_get_url
+def linkedin_extract(redirect_uri, return_url):
+    #assumes linkedin_url is correct if not empty
+    if redirect_uri == "":
+        print "Error: Invalid redirect_uri. redirect_uri is empty. Exiting"
+        return 0
+
+    query = urlparse.urlparse(redirect_uri).query #Parse uri
+    url_dict = urlparse.parse_qs(query)
+
+    if 'code' not in url_dict:
+        print "Error: Code not found in redirect uri. Exiting"
+        return 0
+
+    authentication_code = url_dict['code'] #Get code
+
+    authentication = linkedin.LinkedInAuthentication(__API_KEY, 
+                                                     __API_SECRET, 
+                                                     return_url, 
+                                                     linkedin.PERMISSIONS
+                                                        .enums.values())
+
+    authentication.authorization_code = authentication_code #Set auth_code, lib does not do this smartly..
+
+    authentication.get_access_token() #Needed to access linkedin account info.
+    application = linkedin.LinkedInApplication(authentication) #Now get access
+
+
+    # Extract user information
     # Only extract skills:
     #fields = 'skills'
     # Full extraction:
@@ -60,22 +91,33 @@ def linkedin_connector():
               "recommendation-text," + "recommender)," + "honors-awards," + 
               "three-current-positions," + "three-past-positions," + "volunteer")
 
-    timeout_seconds = 180 #secs before timeout when loggin in to LinkedIn.
+    data = application.get_profile(None, None, fields)
+    try:
+        with open(FILE_NAME, 'w') as outfile:
+            json.dump(data, outfile)
+    except IOError:
+        print 'Error: Cannot open or write to', FILE_NAME
+        return 0
 
-    authentication = linkedin.LinkedInAuthentication(__API_KEY, 
-                                                     __API_SECRET, 
-                                                     __RETURN_URL, 
-                                                     linkedin.PERMISSIONS
-                                                        .enums.values())
+    return 1
 
-    #print authentication.authorization_url  # open this url on your browser
+
+
+#Open browser of given name (default = Chrome), goto LinkedIn login side. 
+#After user log in, store all information extracted fron LinkedIn account to a 
+#file in json format.
+#Return filename of stored results.
+def linkedin_connector():
+    # Setup LinkedIn connection
+    auth_url = linkedin_get_url(__RETURN_URL)
 
     # Open browser with LinkedIN login. Then redirect to __RETURN_URL
+    timeout_seconds = 180 #secs before timeout when loggin in to LinkedIn.
 
     try: 
         #with contextlib.closing(webdriver.Chrome()) as driver:
         with contextlib.closing(wbDriver) as driver:
-            driver.get(authentication.authorization_url) #go to linkedin login site
+            driver.get(auth_url) #go to linkedin login site
             wait = ui.WebDriverWait(driver, timeout_seconds) # timeout after timeout_seconds
             #inputElement = driver.find_element_by_name('Leapkit') #'viewport') #using title instead of element.
             test = wait.until(lambda driver: driver.title == 'Leapkit') #Wait until leapkit homepage is loaded (redirected after login) or up to wait seconds.
@@ -89,27 +131,12 @@ def linkedin_connector():
 
     # Get authorization_code from redirection uri and acquire access to LinkedIn information
 
-    query = urlparse.urlparse(redirect_uri).query #Parse uri
-    url_dict = urlparse.parse_qs(query)
-    authentication_code = url_dict['code'] #Get code
-
-    authentication.authorization_code = authentication_code #Set auth_code, lib does not do this smartly..
-
-    authentication.get_access_token() #Needed to access linkedin account info.
-    application = linkedin.LinkedInApplication(authentication) #Now get access
-
-
-    # Extract user information
-    data = application.get_profile(None, None, fields)
-    try:
-        with open(FILE_NAME, 'w') as outfile:
-            json.dump(data, outfile)
-    except IOError:
-        print 'Cannot open or write to', FILE_NAME
-
-    print "Profile dumped to file: " + FILE_NAME
-
-    return FILE_NAME
+    if linkedin_extract(redirect_uri, __RETURN_URL):
+        print "Profile dumped to file: " + FILE_NAME
+        return FILE_NAME
+    else:
+        print "Something went wrong in the dumping. Exiting"
+        return
 
 
 

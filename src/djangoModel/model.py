@@ -1,7 +1,7 @@
 from django.db import models
 
 def insertPerson(p):
-    person = Person(linkedin_id = int(person.id) ,firstname = p.firstName,
+    per = Person(linkedin_id = int(p.id) ,firstname = p.firstName,
             maidenName = p.maidenName, lastName = p.lastName,
             headline = p.headline, location = p.location, industry = p.industry,
             summary = p.summary, specialities = p.specialities,
@@ -10,25 +10,25 @@ def insertPerson(p):
             p.formattedName, phoneticFirstName = p.phoneticFirstName,
             phoneticLastName = p.phoneticLastName,
             formattedPhoneticName = p.formattedPhoneticName)
-    p.save()
+    per.save()
 
     for s in p.skills:
-        ski = Skill(skill_id = int(s.id), name = s.name, person = p)
+        ski = Skill(skill_id = int(s.id), name = s.name, person = per)
         ski.save()
 
     for l in p.languages:
         lang = Language(lan_id = int(l.id), name = l.name, level = l.Level,
-                person = p)
+                person = per)
         lang.save()
 
     for e in p.educations:
         edu = Education(edu_id = int(e.id), schoolname = e.schoolName,
                 fieldOfStudy = e.fieldOfStudy, degree = e.degree,
-                person = p)
+                person = per)
         edu.save()
 
     for c in p.courses:
-        cou = Course(cour_id = int(c.id), name = c.name, person = p)
+        cou = Course(cour_id = int(c.id), name = c.name, person = per)
         p.save()
 
 class Person(models.Model):
@@ -62,7 +62,7 @@ class Course(models.Model):
 
 class Skill(models.Model):
    skill_id = models.IntegerField()
-   name = models.CharField(max_length = 30)
+   name = models.CharField(max_length = 81)
    person = models.ForeignKey(Person)
 
 class Education(models.Model):

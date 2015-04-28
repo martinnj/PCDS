@@ -4,17 +4,17 @@
 
 ############### HELPER METHODS ###############
 
-#Returns the degree of match between the given list of source and target 
+#Returns the degree of match between the given list of source and target
 #strings.
 #Returns -1 if any list is empty.
-#Takes a compare function compareFun, which takes a single string s and a target 
-#list l of strings s_i. It must return 1 if s matches any target string s_i, 
+#Takes a compare function compareFun, which takes a single string s and a target
+#list l of strings s_i. It must return 1 if s matches any target string s_i,
 #otherwise 0.
 def matchListsOfStrings(sourceList, targetList, compareFun):
     #Clear for empty strings and test for empty lists.
     emptyString = ""
     while emptyString in sourceList:
-        sourceList.remove(emptyString) 
+        sourceList.remove(emptyString)
     while emptyString in targetList:
         targetList.remove(emptyString)
 
@@ -53,7 +53,7 @@ def compareSkills(userSkills, projects):
     sortedProjectList.sort(key=lambda tup: tup[1], reverse=True)
 
     return sortedProjectList
-    
+
 
 
 
