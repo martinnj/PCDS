@@ -1,0 +1,40 @@
+\begin{tikzpicture}
+
+% horizontal axis
+    \draw[->] (0,0) -- (8,0) node[anchor=north] {\emph{Day}};
+% labels
+    \draw   (0,0) node[anchor=north] {0}
+            (1,0) node[anchor=north] {1}
+            (2,0) node[anchor=north] {2}
+            (3,0) node[anchor=north] {3}
+            (4,0) node[anchor=north] {4}
+            (5,0) node[anchor=north] {5}
+            (6,0) node[anchor=north] {6}
+            (7,0) node[anchor=north] {7};
+
+% vertical axis
+    \draw[->] (0,0) -- (0,8) node[anchor=east] {\emph{Points remaining}};
+% labels
+    \draw   (0,1) node[anchor=east] {2}
+            (0,2) node[anchor=east] {4.5}
+            (0,3) node[anchor=east] {7}
+            (0,4) node[anchor=east] {9.5}
+            (0,5) node[anchor=east] {12}
+            (0,6) node[anchor=east] {14.5}
+            (0,7) node[anchor=east] {17};
+
+% projected 
+    \draw[thick, dotted, red] (0,7) -- (7,0);
+
+% actual
+    \draw[thick, blue] (0,7) -- (1,5.2) -- (2,4.7) -- (3,2.7) -- (4,2.2) -- (5,1.3) -- (6,1.3) -- (7,0);
+   
+% legend
+    \begin{scope}[shift={(4,4)}] 
+        \draw[thick, dotted, red] (0,0) -- (0.5,0) 
+            node[black, right]{Projected Sprint};
+        \draw[thick, blue, yshift=\baselineskip] (0,0) -- 
+            plot[] (0.25,0) -- (0.5,0)
+            node[black, right]{Actual Sprint};
+    \end{scope}
+\end{tikzpicture}
