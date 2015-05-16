@@ -6,3 +6,46 @@
 \subsection{Entity Documentation}
 
 \subsection{Code Review}
+The following files we're sent to two other groups for code review:
+\begin{itemize*}
+    \item \texttt{linkedin\_connector.py}
+    \item \texttt{linkedin\_converter.py}
+    \item \texttt{models.py}\footnote{This file was truncated so it only showed code we have written.}
+    \item \texttt{matchmaking.py}
+\end{itemize*}
+
+The notes we recieved in review are written in the following sections on a per-file basis.
+The first line in italic is the comment we recieved, the following text is what actions we took to address it.
+
+\subsubsection{Models.py}
+\begin{itemize*}
+    \item \textit{Be consistent about naming, keep to the Python standard or do camel case.}\\
+          The naming of the offending functions were corrected. Which means we follow the standard set in the file already in order to not introduce a seperate naming style.
+\end{itemize*}
+
+
+\subsubsection{Matchmaking.py}
+\begin{itemize*}
+    \item \textit{Good with keeping the compare fun generic and not domain specific.}\\
+          We later developed a new function but kept the generic approach.
+    \item \textit{The algorithm punishes people who have many skills because the length of the skill list is used to normalize the results.}\\
+          The new algorithm does not have this flaw, instead it will simply count how many ``hits'' or matches is made to a specific project.
+    \item \textit{Comments are not in the Python Docstring type.}\\
+          All the comments have been redone and now adheres to the Python Styleguide. (This was only done for code we wrote ourselves, the existing codebase/documentation have not been changed.)
+\end{itemize*}
+
+
+\subsubsection{linkedin\_converter.py}
+\begin{itemize*}
+    \item \textit{Some lines are very long, the Python styleguide states 79 as the longest line.}\\
+          The lines were rearranged to stay below 79 characters.
+\end{itemize*}
+
+\subsubsection{linkedin\_connector.py}
+\begin{itemize*}
+    \item \textit{Some lines are very long, the Python styleguide states 79 as the longest line.}\\
+          The lines were rearranged to stay below 79 characters.
+    \item \textit{The API keys and what fields to extract could possibly be kept in a configuration file instead.}\\
+          The API keys are there for debuggin purposes alone, the configuration file actually contains Leapkits API keys, but since their LinkedIn App account is not setup with our return URL's we can't use them for debugging right now.
+          The fields to extract could be moved to a configuration file, but we have chosen to keep them in the file, so they are easier to debug and change during development.
+\end{itemize*}
