@@ -21,19 +21,20 @@
             (0,6) node[anchor=east] {66};
     % 1 point is 0.095 
 % actual
-    \draw[thick, blue] (0,6) -- (1,4.59) -- (2,3.355) -- (3,2.09);
+    \draw[thick, blue] (0,6) -- (1,4.59) -- (2,3.355) -- (3,2.09)-- (4,1.00);
 % actual projected
-    \draw[thick, dashed, blue] (3,2.09) -- (4,1.00);
+    \draw[thick, dashed, blue] (4,1.00) -- (5,0);
 
 % projected 
     \draw[thick, dotted, red] (0,6) -- (5,0);
 
 
 % current sprint 
-    \draw[thick, dashed, olive] (3,0) -- (3,7);
+    \draw[thick, dashed, olive] (4,0) -- (4,3);
+    \draw[thick, dashed, olive] (4,5.5) -- (4,7);
 % next sprint 
-    \draw[thick, dashed, purple] (4,0) -- (4,3);
-    \draw[thick, dashed, purple] (4,5.5) -- (4,7);
+    \draw[thick, dashed, purple] (5,0) -- (5,3);
+    \draw[thick, dashed, purple] (5,5.5) -- (5,7);
 
 
     
