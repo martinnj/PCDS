@@ -1,0 +1,41 @@
+\pgfdeclarelayer{background}
+\pgfdeclarelayer{foreground}
+\pgfsetlayers{background,main,foreground}
+
+% Define block styles  
+% \tikzstyle{blockstyle}=[draw, fill=blue!20, text width=6.0em, text centered,
+  % minimum height=1.5em,drop shadow]
+% \tikzstyle{textbox} = [blockstyle, text width=8em, minimum width=10em,
+  % minimum height=3em, rounded corners, drop shadow]
+
+\newcommand{\back}[5]{%
+  \begin{pgfonlayer}{background}
+    % Left-top corner of the background rectangle
+    \path (#1.west |- #2.north)+(-0.9,0.9) node (a1) {};
+    % Right-bottom corner of the background rectanle
+    \path (#3.east |- #4.south)+(+0.9,-0.2) node (a2) {};
+    % Draw the background
+    \path[fill=orange!15,draw=black!50]
+      (a1) rectangle (a2);
+    \path (a1.east |- a1.south)+(1.0,-0.6) node (u1)[texto]
+      {\textit{#5}};
+  \end{pgfonlayer}}
+
+% \newcommand{\class}[2]{node (p#1) [textbox] {#2}}
+
+\begin{tikzpicture}[scale = 0.7]
+    % Draw diagram elements
+    \path                            \class{1}{:DB};
+    \path (p1.east)  + (8.0, 0.0)   \class{4}{Backend};
+    \path (p4)       + ( 0.0, -4.0) \class{2}{:LinkedIn};
+    \path (p4.north) + ( 0.0, 2.0)   \class{3}{Webpage};
+ 
+    % Draw arrows between elements
+    \path [draw] (p1) edge node[pos=0.2, above]{server} node[below]{psycopg 2} node[pos=0.8, above] {client} (p4);
+    \path [draw] (p4) edge node[left] {mvc} (p3);
+    \path [draw] (p4) edge node[pos=0.2, left]{client} node[pos=0.8, left]{http} (p2);
+
+    \back{p3}{p3}{p4}{p4}{:Leapkit}
+
+\end{tikzpicture}
+
