@@ -3,7 +3,7 @@
 
 \subsection{Architecture}
 
-The architectural view, as based on \cite{christensen20123+}, cannot be directly applied to our solution, as it is not class/object based. Instead this view \ref{fig:overview} is based on the logical separation of the components of the solution, which is also the same as the structure of the files. This view shows how the \texttt{View} (the HTML-page along with some javascript) as the view/controller component, making all the calls to and transactions between the backend components. The backend components consist of the \texttt{Linkedin} connecter/extractor, the \texttt{Matchmaking algorithm} and the \texttt{Model}, which is used to hold data structures and uses \texttt{Data Converter} to translate extracted Linkedin-data to a valid data structure.
+The architectural view, as based on \cite{christensen20123+}, cannot be directly applied to our solution, as it is not class/object based. Instead this view \ref{fig:overview} is based on the logical separation of the components of the solution, which is also the same as the structure of the files. This view shows how the \texttt{View} (the HTML-page along with some javascript) as the view/controller component, making all the calls to and transactions between the backend components. The backend components consist of the \texttt{Linkedin} connecter/extractor, the \texttt{Matchmaking algorithm} and the \texttt{Model}, which is used to hold data structures and uses \texttt{Data Converter} to translate extracted Linkedin-data to a valid data structure. This is the static view of the solution.
 
 \begin{figure}[ht]
     \centering
@@ -12,7 +12,7 @@ The architectural view, as based on \cite{christensen20123+}, cannot be directly
     \label{fig:overview}
 \end{figure}
 
-Figure \ref{fig:ccdiagram} shows the major components of the implementation and how they are connected. The \texttt{Backend} acts as a client to both \texttt{LinkedIn} where it requests profile data for users, and to the underlying database server. Requests to \texttt{LinkedIn} are made using HTTP requests while connections to the the database are made using a provided python library, this is done under the hood by Django so the database and library is easily swapable.
+Figure \ref{fig:ccdiagram} shows the major components of the implementation and how they are connected. The \texttt{Backend} acts as a client to both \texttt{LinkedIn} where it requests profile data for users, and to the underlying database server. Requests to \texttt{LinkedIn} are made using HTTP requests while connections to the the database are made using a provided python library, this is done under the hood by Django so the database and library is easily swapable. This is the dynamic view of the solution.
 
 \begin{figure}[ht]
     \centering
