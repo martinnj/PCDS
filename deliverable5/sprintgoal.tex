@@ -2,8 +2,8 @@
 
 
 \subsection{Architecture}
-The architectural view, as based on \ref{}%TODO include ref to article
-, cannot be directly applied to our solution, as it is not class/object based. Instead this view \ref{fig:overview} is based on the logical separation of the components of the solution, which is also the same as the structure of the files. This view shows how the \texttt{View} (the HTML-page along with some javascript) as the view/controller component, making all the calls to and transactions between the backend components. The backend components consist of the \texttt{Linkedin} connecter/extractor, the \texttt{Matchmaking algorithm} and the \texttt{Model}, which is used to hold data structures and uses \texttt{Data Converter} to translate extracted Linkedin-data to a valid data structure.
+
+The architectural view, as based on \cite{christensen20123+}, cannot be directly applied to our solution, as it is not class/object based. Instead this view \ref{fig:overview} is based on the logical separation of the components of the solution, which is also the same as the structure of the files. This view shows how the \texttt{View} (the HTML-page along with some javascript) as the view/controller component, making all the calls to and transactions between the backend components. The backend components consist of the \texttt{Linkedin} connecter/extractor, the \texttt{Matchmaking algorithm} and the \texttt{Model}, which is used to hold data structures and uses \texttt{Data Converter} to translate extracted Linkedin-data to a valid data structure.
 
 \begin{figure}[ht]
     \centering
@@ -12,27 +12,29 @@ The architectural view, as based on \ref{}%TODO include ref to article
     \label{fig:overview}
 \end{figure}
 
-%TODO text for fig:packages
+Figure \ref{fig:ccdiagram} shows the major components of the implementation and how they are connected. The \texttt{Backend} acts as a client to both \texttt{LinkedIn} where it requests profile data for users, and to the underlying database server. Requests to \texttt{LinkedIn} are made using HTTP requests while connections to the the database are made using a provided python library, this is done under the hood by Django so the database and library is easily swapable.
 
 \begin{figure}[ht]
     \centering
     \scalebox{1}{\input{img/ccdiagram.tikz.tex}}
     \caption{Components \& Connection diagram for the implementation.}
-    \label{fig:packages}
+    \label{fig:ccdiagram}
 \end{figure}
 
-%TODO text for fig:sequence
+Figure \ref{fig:profilesequence} shows a sequene diagram that shows what happens when the user clicks the ``Connect to LinkedIn'' button. The success/failure boxes illustrate that the backend talks directly to LinkedIn and not through the database.
+%% TODO: Expand?
 
 \begin{figure}[ht]
     \centering
     \scalebox{1}{\input{img/profilesequence.tikz.tex}}
     \caption{A sequence diagram for the action of retrieving profile information from LinkedIn.}
-    \label{fig:sequence}
+    \label{fig:profilesequence}
 \end{figure}
 
 %TODO text for fig:projectsequence
+Figure \ref{fig:projectsequence} shows what happens when a user enter the page listen all the projects. The backend will get a list of all the skills for the current user and a list of all active projects in the database, afterwards it will calculate the matchmaking score of each project based on the skills and create a list of Project objects based on the matchmaking scores.
 
-\begin{figure}
+\begin{figure}[ht]
     \centering
     \scalebox{1}{\input{img/projectsequence.tikz.tex}}
     \caption{A sequence diagram for the retrieval of projects and recommended projects.}

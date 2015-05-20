@@ -1,17 +1,20 @@
 \begin{sequencediagram}
     \newthread[white]{v}{:View}
-    \newinst[3]{b}{:Backend}
-    \newinst[3]{d}{:DB}
+    \newinst[4]{b}{:Backend}
+    \newinst[4]{d}{:DB}
  
-    \begin{call}{v}{search projects()}{b}{return projects}
-        \begin{call}{b}{get projects(user)}{d}{projects}
-        \end{call}
- 
-    \end{call}
-
-    \begin{call}{v}{get recommendations()}{b}{return recommendations}
-        \begin{call}{b}{get projects(recommendations)}{d}{projects}
+    \begin{call}{v}{search projects()}{b}{return recommended projects}
+        \begin{call}{b}{getSkills(user)}{d}{return skills}
         \end{call}
 
+        \begin{call}{b}{getProjects()}{d}{return projects}
+        \end{call}
+
+        \begin{callself}{b}{matchProjects()}{matchmakingScores}
+        \end{callself}
+
+        \begin{callself}{b}{constructList()}{}
+        \end{callself}
+ 
     \end{call}
 \end{sequencediagram}
