@@ -1,0 +1,98 @@
+\section{Sprint Goal}
+
+
+\subsection{Architecture}
+
+The architectural view, as based on \cite{christensen20123+}, cannot be directly applied to our solution, as it is not class/object based. Instead this view \ref{fig:overview} is based on the logical separation of the components of the solution, which is also the same as the structure of the files. This view shows how the \texttt{View} (the HTML-page along with some javascript) as the view/controller component, making all the calls to and transactions between the backend components. The backend components consist of the \texttt{Linkedin} connecter/extractor, the \texttt{Matchmaking algorithm} and the \texttt{Model}, which is used to hold data structures and uses \texttt{Data Converter} to translate extracted Linkedin-data to a valid data structure. This is the static view of the solution.
+
+\begin{figure}[ht]
+    \centering
+    \scalebox{1}{\input{img/overview.tikz.tex}}
+    \caption{Logical and filewise overview of the relevant part of the Leapkit solution.}
+    \label{fig:overview}
+\end{figure}
+
+Figure \ref{fig:ccdiagram} shows the major components of the implementation and how they are connected. The \texttt{Backend} acts as a client to both \texttt{LinkedIn} where it requests profile data for users, and to the underlying database server. Requests to \texttt{LinkedIn} are made using HTTP requests while connections to the the database are made using a provided python library, this is done under the hood by Django so the database and library is easily swapable. This is the dynamic view of the solution.
+
+\begin{figure}[ht]
+    \centering
+    \scalebox{1}{\input{img/ccdiagram.tikz.tex}}
+    \caption{Components \& Connection diagram for the implementation.}
+    \label{fig:ccdiagram}
+\end{figure}
+
+Figure \ref{fig:profilesequence} shows a sequene diagram that shows what happens when the user clicks the ``Connect to LinkedIn'' button. The success/failure boxes illustrate that the backend talks directly to LinkedIn and not through the database.
+%% TODO: Expand?
+
+\begin{figure}[ht]
+    \centering
+    \scalebox{1}{\input{img/profilesequence.tikz.tex}}
+    \caption{A sequence diagram for the action of retrieving profile information from LinkedIn.}
+    \label{fig:profilesequence}
+\end{figure}
+
+%TODO text for fig:projectsequence
+Figure \ref{fig:projectsequence} shows what happens when a user enter the page listen all the projects. The backend will get a list of all the skills for the current user and a list of all active projects in the database, afterwards it will calculate the matchmaking score of each project based on the skills and create a list of Project objects based on the matchmaking scores.
+
+\begin{figure}[ht]
+    \centering
+    \scalebox{1}{\input{img/projectsequence.tikz.tex}}
+    \caption{A sequence diagram for the retrieval of projects and recommended projects.}
+    \label{fig:projectsequence}
+\end{figure}
+
+\subsection{Entity Documentation}
+
+The documentation for this project gets generated as a series of HTML pages
+using doxygen. The root of the production repository contains a file called
+\textit{Doxyfile} which have all the needed settings to generate the
+documentation. The documentation gets created in a folder called
+\textit{doc/html}.
+
+The latest generated documentation will be attached to this assignment in an
+archive.
+
+\subsection{Code Review}
+The following files we're sent to two other groups for code review:
+\begin{itemize*}
+    \item \texttt{linkedin\_connector.py}
+    \item \texttt{linkedin\_converter.py}
+    \item \texttt{models.py}\footnote{This file was truncated so it only showed code we have written.}
+    \item \texttt{matchmaking.py}
+\end{itemize*}
+
+The notes we recieved in review are written in the following sections on a per-file basis.
+The first line in italic is the comment we recieved, the following text is what actions we took to address it.
+
+\subsubsection{Models.py}
+\begin{itemize*}
+    \item \textit{Be consistent about naming, keep to the Python standard or do camel case.}\\
+          The naming of the offending functions were corrected. Which means we follow the standard set in the file already in order to not introduce a seperate naming style.
+\end{itemize*}
+
+
+\subsubsection{Matchmaking.py}
+\begin{itemize*}
+    \item \textit{Good with keeping the compare fun generic and not domain specific.}\\
+          We later developed a new function but kept the generic approach.
+    \item \textit{The algorithm punishes people who have many skills because the length of the skill list is used to normalize the results.}\\
+          The new algorithm does not have this flaw, instead it will simply count how many ``hits'' or matches is made to a specific project.
+    \item \textit{Comments are not in the Python Docstring type.}\\
+          All the comments have been redone and now adheres to the Python Styleguide. (This was only done for code we wrote ourselves, the existing codebase/documentation have not been changed.)
+\end{itemize*}
+
+
+\subsubsection{linkedin\_converter.py}
+\begin{itemize*}
+    \item \textit{Some lines are very long, the Python styleguide states 79 as the longest line.}\\
+          The lines were rearranged to stay below 79 characters.
+\end{itemize*}
+
+\subsubsection{linkedin\_connector.py}
+\begin{itemize*}
+    \item \textit{Some lines are very long, the Python styleguide states 79 as the longest line.}\\
+          The lines were rearranged to stay below 79 characters.
+    \item \textit{The API keys and what fields to extract could possibly be kept in a configuration file instead.}\\
+          The API keys are there for debuggin purposes alone, the configuration file actually contains Leapkits API keys, but since their LinkedIn App account is not setup with our return URL's we can't use them for debugging right now.
+          The fields to extract could be moved to a configuration file, but we have chosen to keep them in the file, so they are easier to debug and change during development.
+\end{itemize*}

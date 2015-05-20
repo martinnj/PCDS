@@ -1,0 +1,16 @@
+\begin{tikzpicture}[scale = 0.7]
+    % Draw diagram elements
+    \path                            \class{1}{:DB};
+    \path (p1.east)  + (8.0, 0.0)   \class{4}{Backend};
+    \path (p4)       + ( 0.0, -4.0) \class{2}{:LinkedIn};
+    \path (p4.north) + ( 0.0, 2.0)   \class{3}{Webpage};
+ 
+    % Draw arrows between elements
+    \path [draw] (p1) edge node[pos=0.2, above]{server} node[below]{psycopg 2} node[pos=0.8, above] {client} (p4);
+    \path [draw] (p4) edge node[left] {mvc} (p3);
+    \path [draw] (p4) edge node[pos=0.2, left]{client} node[pos=0.8, left]{http} (p2);
+
+    \back{p3}{p3}{p4}{p4}{:Leapkit}
+
+\end{tikzpicture}
+

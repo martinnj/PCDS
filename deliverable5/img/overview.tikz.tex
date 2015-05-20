@@ -1,0 +1,18 @@
+\begin{tikzpicture}[scale = 0.7]
+
+% Draw diagram elements
+\path                          \class{1}{View};
+\path (p1.south) + ( 0.0, -2.0) \class{2}{Matchmaking Algorithm};
+\path (p1.south) + ( 6.0, -2.0) \class{3}{Linkedin};
+\path (p1.south) + (-6.0, -2.0) \class{4}{Model};
+\path (p4.south) + ( 0.0, -2.0) \class{5}{Data Converter};
+
+% Draw arrows between elements
+\path [line] (p1) -- node [left] {} (p2);
+\path [line] (p1) -- node [left] {} (p3);
+\path [line] (p1) -- node [left] {} (p4);
+\path [line] (p4) -- node [left] {} (p5);
+
+\packageback{p4}{p4}{p3}{p5}
+ 
+\end{tikzpicture}
