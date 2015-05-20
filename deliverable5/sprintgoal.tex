@@ -2,12 +2,17 @@
 
 
 \subsection{Architecture}
+The architectural view, as based on \ref{}%TODO include ref to article
+, cannot be directly applied to our solution, as it is not class/object based. Instead this view \ref{fig:overview} is based on the logical separation of the components of the solution, which is also the same as the structure of the files. This view shows how the \texttt{View} (the HTML-page along with some javascript) as the view/controller component, making all the calls to and transactions between the backend components. The backend components consist of the \texttt{Linkedin} connecter/extractor, the \texttt{Matchmaking algorithm} and the \texttt{Model}, which is used to hold data structures and uses \texttt{Data Converter} to translate extracted Linkedin-data to a valid data structure.
+
 \begin{figure}[ht]
     \centering
     \scalebox{1}{\input{img/overview.tikz.tex}}
-    \caption{Package overview of the entire Leapkit solution.}
+    \caption{Logical and filewise overview of the relevant part of the Leapkit solution.}
     \label{fig:overview}
 \end{figure}
+
+%TODO text for fig:packages
 
 \begin{figure}[ht]
     \centering
@@ -16,6 +21,8 @@
     \label{fig:packages}
 \end{figure}
 
+%TODO text for fig:sequence
+
 \begin{figure}[ht]
     \centering
     \scalebox{1}{\input{img/profilesequence.tikz.tex}}
@@ -23,14 +30,14 @@
     \label{fig:sequence}
 \end{figure}
 
+%TODO text for fig:projectsequence
+
 \begin{figure}
     \centering
-    \scalebox{.5}{\input{img/sequence2.tikz.tex}}
-    \caption{Penis penis penispatruljen}
-    \label{fig:sequence2}
+    \scalebox{1}{\input{img/projectsequence.tikz.tex}}
+    \caption{A sequence diagram for the retrieval of projects and recommended projects.}
+    \label{fig:projectsequence}
 \end{figure}
-
-\todo[inline]{Create/use the actual images.}
 
 \subsection{Entity Documentation}
 
