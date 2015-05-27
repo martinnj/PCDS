@@ -21,10 +21,12 @@ python loginLinkedIn/linkedin_connector.py
 main.py: 
     Opens browser to login to LinkedIn, extracts information and stores 
     this via Django in the local database file.
-
 requirements.txt: 
     Contains required packages/libs to be installed in the 
     virtual environment.
+runTests.sh:
+    Used for Jenkins setup. Setup python environment and run all python tests.
+
 
 loginLinkedIn: 
     Contains code for login and extraction of information from 

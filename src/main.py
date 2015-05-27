@@ -3,7 +3,7 @@ from linkedInExtract.linkToLeap import fromFile
 
 
 def main():
-    filePathExtractedResults = "loginLinkedIn/" + linkedin_connector()
+    filePathExtractedResults = linkedin_connector()
     fromFile(filePathExtractedResults)
 
 

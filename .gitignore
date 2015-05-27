@@ -60,7 +60,7 @@ docs/_build/
 target/
 
 
-# Our shit
+# Our shit (mostly latex)
 *.pdf
 *.aux
 *.toc
@@ -68,3 +68,5 @@ target/
 *.fdb_latexmk
 *.out
 *.json
+*.bbl
+*.blg

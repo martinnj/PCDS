@@ -1,0 +1,88 @@
+
+\documentclass[a4paper,11pt]{article}
+\usepackage{a4wide}
+\usepackage[utf8x]{inputenc}
+\usepackage{ucs}
+\usepackage[T1]{fontenc}
+\linespread{1.2}
+\usepackage{courier}
+
+\usepackage{subcaption}
+\usepackage{graphicx} % Allows figures
+\usepackage{amsmath}%,amssymb,amsthm,amsfonts,ulem}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{mdwlist}
+\usepackage{wrapfig}
+\usepackage{caption}
+\usepackage{todonotes}
+
+% Tikz libraries
+\usepackage{tikz}
+\usepackage{pgf-umlsd}
+\usepgflibrary{arrows}
+
+%Section style
+\usepackage{etoolbox} %for configuration of sloppy
+\usepackage{xcolor, colortbl}
+
+% usage: \graphicc{width}{file}{caption}{label}
+\newcommand{\graphicc}[4]{\begin{figure}[H] \centering
+            \includegraphics[width={#1\textwidth}, keepaspectratio=true]{{#2}}
+            \caption{{#3}} \label{#4} \end{figure}}
+
+\newcommand{\mc}[2]{\multicolumn{#1}{c}{#2}}
+\definecolor{Gray}{gray}{0.85}
+\definecolor{secnum}{RGB}{102,102,102}
+
+\makeatletter
+    \def\@seccntformat#1{\llap{\color{secnum}\csname the#1\endcsname\hskip 16pt}}
+\makeatother
+%end section style
+
+{\sloppy}{\hbadness 10000\relax}{}{} %adds hbadness to sloppy
+
+
+% Frontpage stuff
+\title{Deliverable 5 - Project Course: Development Studio 2014 \\ Team India \includegraphics[width=.04\textwidth]{img/india.png}}
+\author
+{
+    Martin Jørgensen \\
+    University of Copenhagen \\
+    Department of Computer Science \\
+    {\tt tzk173@alumni.ku.dk}
+    \and
+    Henrik Bendt \\
+    University of Copenhagen \\
+    Department of Computer Science \\
+    {\tt gwk553@alumni.ku.dk}
+    \and
+    Kasper Passov \\
+    University of Copenhagen \\
+    Department of Computer Science \\
+    {\tt pvx884@alumni.ku.dk}
+    \and
+    Lasse Ahlbech Madsen \\
+    University of Copenhagen \\
+    Department of Computer Science \\
+    {\tt xsc606@alumni.ku.dk}
+}
+\date{\today}
+
+\begin{document}
+\input{tikzstyle}
+
+\maketitle
+
+\tableofcontents
+\pagebreak
+\input{projectdata}
+\input{sprintreport}
+\input{sprintretrospective}
+\input{sprintgoal}
+
+\appendix
+\bibliographystyle{abbrv}
+\bibliography{citations}
+
+\end{document}
