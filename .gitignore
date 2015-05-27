@@ -67,6 +67,9 @@ target/
 *.fls
 *.fdb_latexmk
 *.out
-*.json
 *.bbl
 *.blg
+
+# ignoring generated json
+jsonGenerated.json
+*.json

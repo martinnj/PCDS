@@ -2,137 +2,116 @@ import json
 from pprint import pprint
 import ast
 
+##############################
+##      Data Structure      ##
+##############################
+
 class Person(object):
-    id = ""
-    firstName = ""
-    maidenName = ""
-    lastName = ""
-    headline = ""
-    location = ""
-    industry = ""
-    summary = ""
-    specialities = ""
-    positions = ""
-    pictureUrl = ""
-    publicProfileUrl = ""
-    formattedName = ""
-    phoneticFirstName = ""
-    phoneticLastName = ""
-    formattedPhoneticName = ""
+    id = None
+    firstName = None
+    maidenName = None
+    lastName = None
+    location = None
+    specialities = None
+    positions = None
+    pictureUrl = None
+    publicProfileUrl = None
+
     #Lists
-    publications = []
-    positions = []
-    skills = []
-    educations = []
-    courses = []
-    languages = []
+    skills = None
+    educations = None
+    courses = None
+    languages = None
+
+    def __str__(self):
+        ret = "id = " + self.id + "\nname = " + self.firstName + " " + self.maidenName + " " + self.lastName + ".\n"
+        ret += "\nSkills:"
+        for skill in self.skills:
+            ret += str(skill)
+        ret += "\nLanguages:"
+        for language in self.languages:
+            ret += str(language)
+        ret += "\nEducations:"
+        for education in self.educations:
+            ret += str(education)
+        ret += "\nCourses:"
+        for course in self.courses:
+            ret += str(course)
+        return ret 
+        # return ""
 
 class Language(object):
-   id = ""
-   name = ""
-   level = ""
+    id = None
+    name = None
+    level = None
+
+    def __str__(self):
+        return "    id = " + self.id + "\n    name = " + self.name + "\n    proficiency = " + self.level + "\n\n"
 
 class Course(object):
-    id  = ""
-    name   = ""
-    number  = ""
+    id  = None
+    name   = None
+    number  = None
+
     def __str__(self):
-        return "id = " + self.id + "\n  name = " + self.name + "\nnumber = " + number
+        return "    id = " + self.id + "\n    name = " + self.name + "\n    number = " + self.number
 
 class Skill(object):
-    id = ""
-    name = ""
+    id = None
+    name = None
+
     def __str__(self):
-        return "id = " + self.id + ", name = " + self.name
-
-class Position(object):
-    id = ""
-    title = ""
-    summary = ""
-    startDate = ""
-    endDate = ""
-    isCurrent = ""
-    company = ""
-    def __str__(self):
-        ret  = "  id = " +        self.id +     "\n  title = " +     self.title
-        ret += "\n  summary = " + self.summary +"\n  startDate = " + self.startDate
-        ret += "\n  endDate = " + self.endDate +"\n  isCurrent = " + self.isCurrent
-        if (not self.company is ""):
-            ret += "\n  company = " + self.company.__str__()
-        else:
-            ret += "\n  company = " + self.company
-        return ret
-
-class Company(object):
-    id = ""
-    name = ""
-    type = ""
-    ticker = ""
-    def __str__(self):
-        return "\n    id = " + self.id + "\n    name = " + self.name + "\n    type = " + self.type + "\n    ticker = " + self.ticker
-
-
-class Publication(object):
-    id = ""
-    title = ""
-    name = ""
-    date = ""
-    url = ""
-    summary = ""
-    author = ""
-
-class Author(object):
-    id = ""
-    name = ""
-    person = ""
+        return "    id = " + self.id + ", name = " + self.name + "\n"
 
 class Education(object):
-    id = ""
-    schoolName = ""
-    fieldOfStudy = ""
-    startDate = ""
-    endDate = ""
-    degree = ""
-    activities = ""
-    notes = ""
+    id = None
+    schoolName = None
+    fieldOfStudy = None
+    startDate = None
+    endDate = None
+    degree = None
+    activities = None
+    notes = None
 
-class Certification(object):
-    id = ""
-    name = ""
-    authority = ""
-    number = ""
-    startDate = ""
-    endDate = ""
+    def __str__(self):
+        return "    id = " + self.id + ": " + self.degree + " in " + self.fieldOfStudy + " from " + self.schoolName + "\n"
 
+################################
+##      Helper Functions      ##
+################################
 
 def get(data, query):
+    """returns a piece of data if it exists, otherwise returns an empy string"""
     if(query in data):
         return data[query]
     else:
         return ""
 
 def getSub(data, query):
+    """Get the values inside the data"""
     if("values" in get(data,query)):
         return get(data, query)["values"]
     else:
         return []
 
-def fillFullProfile(data):
-    variables = [s for s in dir(Person) if s[0] != '_']
+def createPerson():
+    """Initiates the person class and fills lists"""
     person = Person()
+    person.skills = []
+    person.languages = []
+    person.educations = []
+    person.courses = []
+    return person
+
+def fillFullProfile(data):
+    """Creates a person based on the data"""
+    variables = [s for s in dir(Person) if s[0] != '_']
+    person = createPerson()
     for var in variables:
-        if(var == "publications"):
-            for publication in getSub(data, "publications"):
-               classInstance = createSub(var, Publication, publication)
-               person.publications.append(classInstance)
-        elif(var == "languages"):
+        if(var == "languages"):
            for language in getSub(data,"languages"):
                classInstance = createSub(var, Language, language)
                person.languages.append(classInstance)
-        elif(var == "positions"):
-           for position in getSub(data,"positions"):
-               classInstance = createSub(var, Position, position)
-               person.positions.append(classInstance)
         elif(var == "educations"):
            for education in getSub(data,"educations"):
                classInstance = createSub(var, Education, education)
@@ -143,39 +122,38 @@ def fillFullProfile(data):
         elif(var == "courses"):
             for course in getSub(data, "courses"):
                person.courses.append(createSub(var, Course, course))
-        elif(var == "certifications"):
-            for certification in getSub(data, "certifications"):
-               person.certification.append(createSub(var, Certification, certification))
         else:
             exec("person.%s = \"%s\"" % (var, get(data,var)))
     return person
 
 def createSub(name, className, data):
+    """Fills a sublist"""
     variables = [s for s in dir(className) if s[0] != '_']
     classInstance = className()
     for var in variables:
         if(var[-4:] == "Date"):
             exec("classInstance.%s = \"%s\"" % (var, formatDate(get(data,var))))
-        elif var == "company":
-            classInstance.company = createSub(var, Company, get(data, var))
-        elif var == "name" and name == "authorities":
-            classInstance.authority = data[name[:-1]][var]
         elif(var == "name" and (name == "languages" or name == "skills" or name == "publishers")):
             classInstance.name = data[name[:-1]][var]
         elif(var == "level" and name == "languages" and "proficiency" in data):
             classInstance.level = data["proficiency"][var]
-        elif(var == "author"):
-            classInstance.author = createSub(var, Author, get(data, var))
         else:
             exec("classInstance.%s = \"%s\"" % (var,get(data,var)))
     return classInstance
 
 def formatDate(data):
+    """Formates a date"""
     if data is "":
         return data
     return str(get(data,"month")) + "/" + str(get(data, "year"))
 
+
+####################
+##      API       ##
+####################
+
 def run(rawdata):
+    """Transform the data based on if it is in unicode or pure json"""
     if(rawdata[1] == "u"):
         json_data = ast.literal_eval(rawdata)
     else:
@@ -183,6 +161,7 @@ def run(rawdata):
     return fillFullProfile(json_data)
 
 def fromFile(path):
+    """Takes a JSON file and creates a datastructure based on it"""
     file = open(path)
     data = ""
     for line in file:
@@ -190,4 +169,5 @@ def fromFile(path):
     return run(data)
 
 def fromString(data):
+    """Takes a JSON string and creates a datastructure based on it"""
     return run(data)
