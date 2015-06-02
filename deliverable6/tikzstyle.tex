@@ -1,0 +1,58 @@
+\usetikzlibrary{shadows,arrows}
+\usetikzlibrary{decorations.markings}
+
+% Define the layers to draw the diagram
+\pgfdeclarelayer{background}
+\pgfdeclarelayer{foreground}
+\pgfsetlayers{background,main,foreground}
+
+
+% Define package style
+\tikzstyle{packagestyle}=[draw = black!50, fill=orange!15, text width=6.0em, text centered,text = black!70,  minimum height=1.2em]
+\tikzstyle{package} = [packagestyle, text width=8em, minimum width=10em, minimum height=1.5em]
+
+% Define block styles  
+\tikzstyle{blockstyle}=[draw, fill=blue!20, text width=6.0em, text centered,
+  minimum height=1.5em,drop shadow]
+\tikzstyle{textbox} = [blockstyle, text width=8em, minimum width=10em,
+  minimum height=3em, rounded corners, drop shadow]
+
+% Background upper right text style
+\tikzstyle{texto} = [above, text width=6em, text centered]
+
+\tikzset{
+    big arrow/.style={
+        decoration={markings,mark=at position 1 with {\arrow[scale=2,#1]{>}}},
+        postaction={decorate},
+        shorten >=0.4pt}}
+
+
+% Tikz commands
+\newcommand{\class}[2]{node (p#1) [textbox] {#2}}
+\newcommand{\package}[2]{node (p#1) [package] {#2}}
+
+
+% Define backgrounds
+\newcommand{\packageback}[4]{%
+  \begin{pgfonlayer}{background}
+    % Left-top corner of the background rectangle
+    \path (#1.west |- #2.north)+(-0.5,0.5) node (a1) {};
+    % Right-bottom corner of the background rectanle
+    \path (#3.east |- #4.south)+(+0.5,-0.5) node (a2) {};
+    % Draw the background
+    \path[fill=orange!15,draw=black!50]
+      (a1) rectangle (a2);
+    \path (a1.north) + (2.75, 0.2) \package{6} {Backend};
+  \end{pgfonlayer}}
+
+\newcommand{\back}[5]{%
+  \begin{pgfonlayer}{background}
+    \path (#1.west |- #2.north)+(-0.9,0.9) node (a1) {};
+    \path (#3.east |- #4.south)+(+0.9,-0.2) node (a2) {};
+    \path[fill=orange!15,draw=black!50]
+      (a1) rectangle (a2);
+    \path (a1.east |- a1.south)+(1.0,-0.6) node (u1)[texto]
+      {\textit{#5}};
+  \end{pgfonlayer}}
+
+\tikzstyle{line} = [draw, thick, color=black!50, big arrow]
