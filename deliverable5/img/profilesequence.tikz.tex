@@ -13,11 +13,13 @@
             \begin{call}{b}{connect to linkedin[user]}{l}{linkedin profile}
             \end{call}
             \mess{b}{save profile[user]}{d}
+            \mess{b}{GUI\_success}{v}
         \end{sdblock}
 
         \begin{sdblock}{Failure}{}
-            \begin{call}{b}{connect to linkedin[user]}{l}{null}
+            \begin{call}{b}{connect to linkedin[user]}{l}{no profile}
             \end{call}
+            \mess{b}{GUI\_fail}{v}
         \end{sdblock}
 
     \end{call}
