@@ -1,0 +1,41 @@
+\begin{tikzpicture}
+
+%% Points on days:
+% 0: 2+1+1+1+1 = 6
+% 1: 1+1       = 2
+% 2: 3         = 3
+% 3: 4+1       = 5
+% SUM:          16
+
+% horizontal axis
+    \draw[->] (0,0) -- (7,0) node[anchor=north] {\emph{Day}};
+% labels
+    \draw   (0,0)   node[anchor=north] {0}
+            (1.5,0) node[anchor=north] {1}
+            (3,0)   node[anchor=north] {2}
+            (4.5,0) node[anchor=north] {3}
+            (6,0)   node[anchor=north] {4};
+
+% vertical axis
+    \draw[->] (0,0) -- (0,7) node[anchor=east] {\emph{Points remaining}};
+% labels
+    \draw   (0,0) node[anchor=east] {0.0}
+            (0,2) node[anchor=east] {0.33}
+            (0,4) node[anchor=east] {0.66}
+            (0,6) node[anchor=east] {1.0};
+
+% projected 
+    \draw[thick, dotted, red] (0,6) -- (6,0);
+
+% actual
+    \draw[thick, blue] (0,6) -- (6,0);
+   
+% legend
+    \begin{scope}[shift={(4,4)}] 
+        \draw[thick, dotted, red] (0,0) -- (0.5,0) 
+            node[black, right]{Projected Sprint};
+        \draw[thick, blue, yshift=\baselineskip] (0,0) -- 
+            plot[] (0.25,0) -- (0.5,0)
+            node[black, right]{Actual Sprint};
+    \end{scope}
+\end{tikzpicture}
